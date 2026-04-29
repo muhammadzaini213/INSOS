@@ -1069,10 +1069,35 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 318108228}
     m_Modifications:
+    - target: {fileID: 791825601039048500, guid: 3810df768fbb6c5848c6077d69c7b13a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1151233384229193904, guid: 3810df768fbb6c5848c6077d69c7b13a,
         type: 3}
       propertyPath: m_Name
       value: Rotatable
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151233384229193904, guid: 3810df768fbb6c5848c6077d69c7b13a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151233384229193904, guid: 3810df768fbb6c5848c6077d69c7b13a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Rotatable
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885545049271533059, guid: 3810df768fbb6c5848c6077d69c7b13a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5206558156891544685, guid: 3810df768fbb6c5848c6077d69c7b13a,
+        type: 3}
+      propertyPath: handleDetectionRadius
+      value: 50.1
       objectReference: {fileID: 0}
     - target: {fileID: 8590080969724266766, guid: 3810df768fbb6c5848c6077d69c7b13a,
         type: 3}
