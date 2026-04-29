@@ -4,18 +4,19 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Environment
+  - Draggable
+  - Rotatable
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Collider
+  - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Border
+  - Collider
+  - Draggable
+  - Gravitable
   - 
   - 
   - 
@@ -41,4 +42,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 721098607
+    locked: 0
+  - name: Clickable
+    uniqueID: 2118899373
+    locked: 0
+  - name: Game
+    uniqueID: 3090910627
+    locked: 0
+  - name: Characters
+    uniqueID: 572784657
+    locked: 0
+  - name: Interactable
+    uniqueID: 2835057555
+    locked: 0
+  - name: VFX
+    uniqueID: 882603989
     locked: 0
