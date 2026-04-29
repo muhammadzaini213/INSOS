@@ -2,6 +2,8 @@ using UnityEngine;
 
 public abstract class MiniGame : MonoBehaviour
 {
+    [SerializeField] private string miniGameID; // Name of the mini-game
+    [SerializeField] private bool isAlreadyPlayed; // Flag to check if the mini-game has been played before
     [SerializeField] private int starCount; // Number of stars earned in the mini-game
     private void StartMiniGame()
     {
