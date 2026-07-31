@@ -16,7 +16,7 @@ TagManager:
   - Border
   - Collider
   - Draggable
-  - Gravitable
+  - Rotatable
   - 
   - 
   - 
