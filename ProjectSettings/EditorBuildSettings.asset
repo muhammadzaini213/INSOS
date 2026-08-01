@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/_Game/04_Scenes/Menu/01_StartMenu.unity
     guid: 1d32262a63b8566c2a34956b2dccdb98
   - enabled: 1
-    path: Assets/_Game/04_Scenes/Menu/SettingsMenu.unity
-    guid: 71449f778a9ffbd698bfe2b3ad011685
+    path: Assets/_Game/04_Scenes/Menu/02_ChooseGenderMenu.unity
+    guid: 3dca136fc2daca214a0da507247f9266
   - enabled: 1
-    path: Assets/_Game/04_Scenes/Menu/AboutMenu.unity
-    guid: d965f539d8f6485f0b5c9e3b979326dd
+    path: Assets/_Game/04_Scenes/Menu/03_ChooseActivityMenu.unity
+    guid: 0c0f8cc0eda30f46289035c5bffba51d
+  - enabled: 1
+    path: Assets/_Game/04_Scenes/Game/Section 1.unity
+    guid: a6a4947173230e99ba090fc729d3b1ad
   m_configObjects: {}
