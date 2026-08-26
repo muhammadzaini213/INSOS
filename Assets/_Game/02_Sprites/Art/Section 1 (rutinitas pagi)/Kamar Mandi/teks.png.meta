@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 73d1cdc7f699fec40b2a6ce66bab6378
+guid: 83073b2de7fab234592ab537a188bcdc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: lantai_0
+      name: teks_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1920
-        height: 1080
+        x: 95
+        y: 173
+        width: 1717
+        height: 764
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38f39d5747e471bddb84f55332bae3e3
-      internalID: 792775841
+      spriteID: e45f760e1992e8acd9a2f89adde68c3d
+      internalID: -2099296973
       vertices: []
       indices: 
       edges: []
@@ -154,7 +154,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      lantai_0: 792775841
+      teks_0: -2099296973
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

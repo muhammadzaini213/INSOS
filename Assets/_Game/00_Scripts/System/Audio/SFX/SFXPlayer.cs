@@ -1,10 +1,12 @@
+using System.Collections;
 using System.Collections.Generic;
+using Slafurry.Core.Interface;
 using UnityEngine;
 using UnityEngine.Audio;
 
 namespace Slafurry.System.Audio
 {
-    public class SFXPlayer : MonoBehaviour
+    public class SFXPlayer : MonoBehaviour, IInitializable
     {
         [SerializeField] private SFXData sfxData;
         [SerializeField] private AudioMixerGroup sfxMixerGroup;
@@ -17,6 +19,8 @@ namespace Slafurry.System.Audio
         }
 
         private readonly Dictionary<string, CategoryPool> _pools = new();
+
+        public int Priority => 1;
 
         void Awake()
         {
@@ -192,6 +196,16 @@ namespace Slafurry.System.Audio
 
             clip = effect.clips[Random.Range(0, effect.clips.Length)];
             return true;
+        }
+
+        public IEnumerator Initialize()
+        {
+            throw new global::System.NotImplementedException();
+        }
+
+        public void PostInitialize()
+        {
+            throw new global::System.NotImplementedException();
         }
     }
 }

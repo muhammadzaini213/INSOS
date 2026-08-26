@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Slafurry.System.Audio
 {
     [GameAssetCreator("Audio/Music", "Music Data", order: 1)]
+    [CreateAssetMenu (fileName = "New Music Data", menuName = "Audio/Music Data", order = 1)]
     public class MusicData : ScriptableObject
     {
         public MusicTrack[] tracks;
