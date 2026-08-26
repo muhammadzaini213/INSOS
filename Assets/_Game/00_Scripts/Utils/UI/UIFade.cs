@@ -1,14 +1,10 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Slafurry.Utils.UI
 {
-    /// <summary>
-    /// Simple one-shot fade in/out for a CanvasGroup. Use for screen
-    /// transitions, tooltips appearing/disappearing, or any UI element
-    /// that needs to fade rather than blink (see UIBlink for repeating loop).
-    /// </summary>
     [RequireComponent(typeof(CanvasGroup))]
     public class UIFade : MonoBehaviour
     {
@@ -16,6 +12,10 @@ namespace Slafurry.Utils.UI
         [SerializeField] private float duration = 0.3f;
         [SerializeField] private bool useUnscaledTime = true;
         [SerializeField] private bool disableInteractionWhileHidden = true;
+
+        [Header("Events")]
+        [SerializeField] private UnityEvent onFadeInComplete;
+        [SerializeField] private UnityEvent onFadeOutComplete;
 
         public event Action OnFadeInComplete;
         public event Action OnFadeOutComplete;
@@ -28,38 +28,78 @@ namespace Slafurry.Utils.UI
                 canvasGroup = GetComponent<CanvasGroup>();
         }
 
-        public void FadeIn(float? overrideDuration = null)
+        public void FadeIn()
         {
-            StartFade(canvasGroup.alpha, 1f, overrideDuration ?? duration, () => OnFadeInComplete?.Invoke());
+            StartFade(
+                canvasGroup.alpha,
+                1f,
+                duration,
+                () =>
+                {
+                    OnFadeInComplete?.Invoke();
+                    onFadeInComplete?.Invoke();
+                }
+            );
         }
 
-        public void FadeOut(float? overrideDuration = null)
+        public void FadeOut()
         {
-            StartFade(canvasGroup.alpha, 0f, overrideDuration ?? duration, () => OnFadeOutComplete?.Invoke());
+            StartFade(
+                canvasGroup.alpha,
+                0f,
+                duration,
+                () =>
+                {
+                    OnFadeOutComplete?.Invoke();
+                    onFadeOutComplete?.Invoke();
+                }
+            );
         }
 
         public void SetImmediate(float alpha)
         {
-            if (_routine != null) StopCoroutine(_routine);
+            if (_routine != null)
+                StopCoroutine(_routine);
+
+            _routine = null;
             ApplyAlpha(alpha);
         }
 
         private void StartFade(float from, float to, float dur, Action onComplete)
         {
-            if (_routine != null) StopCoroutine(_routine);
-            _routine = StartCoroutine(FadeRoutine(from, to, dur, onComplete));
+            if (_routine != null)
+                StopCoroutine(_routine);
+
+            _routine = StartCoroutine(
+                FadeRoutine(from, to, dur, onComplete)
+            );
         }
 
-        private IEnumerator FadeRoutine(float from, float to, float dur, Action onComplete)
+        private IEnumerator FadeRoutine(
+            float from,
+            float to,
+            float dur,
+            Action onComplete)
         {
             float t = 0f;
+
             while (t < dur)
             {
-                t += useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
-                ApplyAlpha(Mathf.Lerp(from, to, dur > 0 ? t / dur : 1f));
+                t += useUnscaledTime
+                    ? Time.unscaledDeltaTime
+                    : Time.deltaTime;
+
+                float progress = dur > 0f
+                    ? Mathf.Clamp01(t / dur)
+                    : 1f;
+
+                ApplyAlpha(Mathf.Lerp(from, to, progress));
+
                 yield return null;
             }
+
             ApplyAlpha(to);
+
             _routine = null;
             onComplete?.Invoke();
         }
@@ -67,9 +107,11 @@ namespace Slafurry.Utils.UI
         private void ApplyAlpha(float alpha)
         {
             canvasGroup.alpha = alpha;
+
             if (disableInteractionWhileHidden)
             {
                 bool visible = alpha > 0.01f;
+
                 canvasGroup.interactable = visible;
                 canvasGroup.blocksRaycasts = visible;
             }

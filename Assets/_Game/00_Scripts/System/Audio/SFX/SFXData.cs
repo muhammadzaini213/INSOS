@@ -7,7 +7,7 @@ namespace Slafurry.System.Audio
 
 
     [GameAssetCreator("Audio/SFX", "SFX Data", order: 1)]
-
+    [CreateAssetMenu(fileName = "New SFX Data", menuName = "Audio/SFX Data", order = 1)]
     public class SFXData : ScriptableObject
     {
         public SFXCategory[] categories;
