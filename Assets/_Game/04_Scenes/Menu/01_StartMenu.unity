@@ -208,7 +208,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 130854819}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChangeSceneTrigger, Assembly-CSharp
         m_MethodName: ChangeScene
         m_Mode: 1
@@ -244,6 +244,12 @@ MonoBehaviour:
   duration: 0.3
   useUnscaledTime: 1
   disableInteractionWhileHidden: 1
+  onFadeInComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onFadeOutComplete:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!225 &130854817
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -310,10 +316,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 130854811}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d08c5951e7c57ad7ea9bbed6b7dc0ef8, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ad67bccfaa506757a1fac798993a1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 02_ChooseGenderMenu
+  playLimit: 0
+  unlimited: 1
+  sceneName: 02_ChooseGender
 --- !u!1001 &266783182
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,4 +12,5 @@ public class ChangeSceneTrigger : BaseTrigger
         SceneLoader.Instance.LoadScene(sceneName);
         AddTriggerCount();
     }
+    
 }

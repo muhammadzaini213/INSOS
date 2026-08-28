@@ -452,10 +452,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 297280249}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d08c5951e7c57ad7ea9bbed6b7dc0ef8, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ad67bccfaa506757a1fac798993a1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Section 1
+  playLimit: 0
+  unlimited: 1
+  sceneName: 01_Section 1
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,10 +975,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 661636370}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d08c5951e7c57ad7ea9bbed6b7dc0ef8, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ad67bccfaa506757a1fac798993a1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Section 1
+  playLimit: 0
+  unlimited: 1
+  sceneName: 01_Section 1
 --- !u!1 &759981221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,10 +1356,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2024201106}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d08c5951e7c57ad7ea9bbed6b7dc0ef8, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ad67bccfaa506757a1fac798993a1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Section 1
+  playLimit: 0
+  unlimited: 1
+  sceneName: 01_Section 1
 --- !u!1 &2144198435
 GameObject:
   m_ObjectHideFlags: 0
