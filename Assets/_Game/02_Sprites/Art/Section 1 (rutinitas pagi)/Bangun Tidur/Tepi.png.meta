@@ -126,10 +126,10 @@ TextureImporter:
       name: Tepi_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1595
         y: 0
-        width: 1080
-        height: 325
+        width: 325
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

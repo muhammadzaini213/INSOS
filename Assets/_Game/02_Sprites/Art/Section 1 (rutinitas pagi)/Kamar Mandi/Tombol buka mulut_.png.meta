@@ -126,12 +126,12 @@ TextureImporter:
       name: Tombol buka mulut__0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 475
-        width: 1080
-        height: 969
+        x: 145
+        y: 707
+        width: 781
+        height: 510
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

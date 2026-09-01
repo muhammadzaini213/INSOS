@@ -126,12 +126,12 @@ TextureImporter:
       name: Tombol Kumur-kumur__0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 86
-        width: 1080
-        height: 1749
+        x: 131
+        y: 269
+        width: 810
+        height: 1375
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

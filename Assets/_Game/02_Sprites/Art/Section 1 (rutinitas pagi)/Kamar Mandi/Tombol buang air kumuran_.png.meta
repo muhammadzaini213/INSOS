@@ -126,12 +126,12 @@ TextureImporter:
       name: Tombol buang air kumuran__0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 78
-        width: 2565
-        height: 4402
+        x: 862
+        y: 564
+        width: 2825
+        height: 1441
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
