@@ -3,7 +3,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class DropZoneTrigger : BaseTrigger, IDropHandler
+public class DropZoneTrigger : BaseTrigger,
+    IDropHandler,
+    IPointerEnterHandler,
+    IPointerExitHandler
 {
     [Header("Accepted Items")]
     [SerializeField] private List<DragItemTrigger> acceptedItems =
@@ -17,6 +20,10 @@ public class DropZoneTrigger : BaseTrigger, IDropHandler
     [Header("Correct Drop")]
     [SerializeField] private bool destroyDroppedItem = false;
 
+    [Header("Hover Events")]
+    [SerializeField] private UnityEvent onCorrectHoverEnter;
+    [SerializeField] private UnityEvent onCorrectHoverExit;
+
     [Header("Events")]
     [SerializeField] private UnityEvent onDrop;
     [SerializeField] private UnityEvent onCorrectDrop;
@@ -26,6 +33,50 @@ public class DropZoneTrigger : BaseTrigger, IDropHandler
     private readonly List<DragItemTrigger> placedItems =
         new List<DragItemTrigger>();
 
+    private DragItemTrigger hoveredItem;
+
+
+    // ========================================
+    // HOVER
+    // ========================================
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        GameObject draggedObject = eventData.pointerDrag;
+
+        if (draggedObject == null)
+            return;
+
+        DragItemTrigger dragItem =
+            draggedObject.GetComponent<DragItemTrigger>();
+
+        if (dragItem == null)
+            return;
+
+        // Hanya trigger kalau item benar
+        if (!IsAcceptedItem(dragItem))
+            return;
+
+        // Kalau zone sudah penuh, jangan trigger hover
+        if (!CanAcceptMoreItems())
+            return;
+
+        hoveredItem = dragItem;
+
+        onCorrectHoverEnter?.Invoke();
+    }
+
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (hoveredItem == null)
+            return;
+
+        onCorrectHoverExit?.Invoke();
+
+        hoveredItem = null;
+    }
+
 
     // ========================================
     // DROP
@@ -33,6 +84,13 @@ public class DropZoneTrigger : BaseTrigger, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
+        // Pastikan hover event berhenti ketika drop
+        if (hoveredItem != null)
+        {
+            onCorrectHoverExit?.Invoke();
+            hoveredItem = null;
+        }
+
         if (!CanTrigger())
         {
             onDropRejected?.Invoke();

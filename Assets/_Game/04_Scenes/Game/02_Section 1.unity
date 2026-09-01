@@ -2830,6 +2830,7 @@ GameObject:
   - component: {fileID: 1235591348}
   - component: {fileID: 1235591347}
   - component: {fileID: 1235591349}
+  - component: {fileID: 1235591350}
   m_Layer: 5
   m_Name: EndVideo
   m_TagString: Untagged
@@ -2911,7 +2912,37 @@ MonoBehaviour:
   fps: 12
   loop: 0
   playOnEnable: 1
-  hideAfterFinish: 0
+  hideAfterFinish: 1
+  onFinished:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1235591350}
+        m_TargetAssemblyTypeName: ChangeSceneTrigger, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &1235591350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235591345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad67bccfaa506757a1fac798993a1f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  sceneName: 03_Section 1
 --- !u!1 &1401265249
 GameObject:
   m_ObjectHideFlags: 0

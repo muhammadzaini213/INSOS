@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Slafurry.Utils.UI
 {
@@ -25,21 +26,35 @@ namespace Slafurry.Utils.UI
         [Header("Timing")]
         [SerializeField] private float duration = 0.5f;
         [SerializeField] private float delay = 0f;
-        [SerializeField] private AnimationCurve easeCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+        [SerializeField] private AnimationCurve easeCurve =
+            AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
 
         [Header("Options")]
         [SerializeField] private bool playOnEnable = true;
         [SerializeField] private bool useUnscaledTime = true;
         [SerializeField] private bool deactivateOnHidden = false;
 
-        /// <summary>Fired when a SlideOut() finishes (e.g. safe point to deactivate the panel).</summary>
+        [Header("Unity Events")]
+        [Tooltip("Called when SlideIn() finishes.")]
+        [SerializeField] private UnityEvent onSlideInComplete;
+
+        [Tooltip("Called when SlideOut() finishes.")]
+        [SerializeField] private UnityEvent onSlideOutComplete;
+
+        /// <summary>
+        /// Fired when a SlideOut() finishes.
+        /// Existing C# subscribers remain supported.
+        /// </summary>
         public event Action OnSlideOutComplete;
 
-        /// <summary>Fired when a SlideIn() finishes.</summary>
+        /// <summary>
+        /// Fired when a SlideIn() finishes.
+        /// Existing C# subscribers remain supported.
+        /// </summary>
         public event Action OnSlideInComplete;
 
-        private Vector2 _shownPos;   // the resting/visible position, captured once at Awake
-        private Vector2 _hiddenPos;  // the off-screen position, computed from Direction
+        private Vector2 _shownPos;
+        private Vector2 _hiddenPos;
         private Coroutine _routine;
 
         private void Awake()
@@ -50,6 +65,7 @@ namespace Slafurry.Utils.UI
             if (canvasRect == null)
             {
                 Canvas canvas = GetComponentInParent<Canvas>();
+
                 if (canvas != null)
                     canvasRect = canvas.rootCanvas.transform as RectTransform;
             }
@@ -67,63 +83,140 @@ namespace Slafurry.Utils.UI
         public void SlideIn()
         {
             rectTransform.anchoredPosition = _hiddenPos;
-            StartSlide(_hiddenPos, _shownPos, onComplete: () => OnSlideInComplete?.Invoke());
+
+            StartSlide(
+                _hiddenPos,
+                _shownPos,
+                onComplete: () =>
+                {
+                    // Sistem lama
+                    OnSlideInComplete?.Invoke();
+
+                    // UnityEvent baru
+                    onSlideInComplete?.Invoke();
+                }
+            );
         }
 
         public void SlideOut()
         {
-            StartSlide(rectTransform.anchoredPosition, _hiddenPos, onComplete: () =>
-            {
-                OnSlideOutComplete?.Invoke();
-                if (deactivateOnHidden)
-                    gameObject.SetActive(false);
-            });
+            StartSlide(
+                rectTransform.anchoredPosition,
+                _hiddenPos,
+                onComplete: () =>
+                {
+                    // Sistem lama
+                    OnSlideOutComplete?.Invoke();
+
+                    // UnityEvent baru
+                    onSlideOutComplete?.Invoke();
+
+                    if (deactivateOnHidden)
+                        gameObject.SetActive(false);
+                }
+            );
         }
 
-        private void StartSlide(Vector2 from, Vector2 to, Action onComplete)
+        private void StartSlide(
+            Vector2 from,
+            Vector2 to,
+            Action onComplete)
         {
             if (_routine != null)
                 StopCoroutine(_routine);
-            _routine = StartCoroutine(SlideRoutine(from, to, onComplete));
+
+            _routine = StartCoroutine(
+                SlideRoutine(from, to, onComplete)
+            );
         }
 
         private Vector2 CalculateHiddenPos()
         {
             float ownWidth = rectTransform.rect.width;
             float ownHeight = rectTransform.rect.height;
-            float screenWidth = canvasRect != null ? canvasRect.rect.width : Screen.width;
-            float screenHeight = canvasRect != null ? canvasRect.rect.height : Screen.height;
 
-            float horizontalDistance = (screenWidth * 0.5f) + (ownWidth * 0.5f) + extraOffset;
-            float verticalDistance = (screenHeight * 0.5f) + (ownHeight * 0.5f) + extraOffset;
+            float screenWidth =
+                canvasRect != null
+                    ? canvasRect.rect.width
+                    : Screen.width;
+
+            float screenHeight =
+                canvasRect != null
+                    ? canvasRect.rect.height
+                    : Screen.height;
+
+            float horizontalDistance =
+                (screenWidth * 0.5f) +
+                (ownWidth * 0.5f) +
+                extraOffset;
+
+            float verticalDistance =
+                (screenHeight * 0.5f) +
+                (ownHeight * 0.5f) +
+                extraOffset;
 
             return fromDirection switch
             {
-                Direction.Top => _shownPos + new Vector2(0f, verticalDistance),
-                Direction.Bottom => _shownPos - new Vector2(0f, verticalDistance),
-                Direction.Left => _shownPos - new Vector2(horizontalDistance, 0f),
-                Direction.Right => _shownPos + new Vector2(horizontalDistance, 0f),
+                Direction.Top =>
+                    _shownPos +
+                    new Vector2(0f, verticalDistance),
+
+                Direction.Bottom =>
+                    _shownPos -
+                    new Vector2(0f, verticalDistance),
+
+                Direction.Left =>
+                    _shownPos -
+                    new Vector2(horizontalDistance, 0f),
+
+                Direction.Right =>
+                    _shownPos +
+                    new Vector2(horizontalDistance, 0f),
+
                 _ => _shownPos
             };
         }
 
-        private IEnumerator SlideRoutine(Vector2 from, Vector2 to, Action onComplete)
+        private IEnumerator SlideRoutine(
+            Vector2 from,
+            Vector2 to,
+            Action onComplete)
         {
             if (delay > 0f)
-                yield return useUnscaledTime ? new WaitForSecondsRealtime(delay) : new WaitForSeconds(delay);
+            {
+                yield return useUnscaledTime
+                    ? new WaitForSecondsRealtime(delay)
+                    : new WaitForSeconds(delay);
+            }
 
             float t = 0f;
+
             while (t < duration)
             {
-                t += useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
-                float normalized = Mathf.Clamp01(t / duration);
-                float eased = easeCurve.Evaluate(normalized);
-                rectTransform.anchoredPosition = Vector2.LerpUnclamped(from, to, eased);
+                t += useUnscaledTime
+                    ? Time.unscaledDeltaTime
+                    : Time.deltaTime;
+
+                float normalized =
+                    Mathf.Clamp01(t / duration);
+
+                float eased =
+                    easeCurve.Evaluate(normalized);
+
+                rectTransform.anchoredPosition =
+                    Vector2.LerpUnclamped(
+                        from,
+                        to,
+                        eased
+                    );
+
                 yield return null;
             }
 
             rectTransform.anchoredPosition = to;
+
             _routine = null;
+
             onComplete?.Invoke();
         }
     }

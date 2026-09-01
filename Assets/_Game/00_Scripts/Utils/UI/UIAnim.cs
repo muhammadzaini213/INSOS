@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Linq;
+using UnityEngine.Events;
 
 public class UIAnim : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class UIAnim : MonoBehaviour
 
     [Header("After Animation")]
     [SerializeField] private bool hideAfterFinish = false;
+    [SerializeField] private UnityEvent onFinished;
 
     private Sprite[] frames;
     private Coroutine animationCoroutine;
@@ -153,6 +155,7 @@ public class UIAnim : MonoBehaviour
         {
             targetImage.enabled = false;
         }
+        onFinished?.Invoke();
     }
 
     // =========================================================
