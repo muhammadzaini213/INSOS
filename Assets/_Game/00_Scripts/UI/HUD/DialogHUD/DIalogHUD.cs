@@ -57,10 +57,10 @@ namespace Game.UI.HUD
             if (!dialogUIPrefab.activeSelf)
                 return;
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                SkipDialog();
-            }
+            // if (Input.GetKeyDown(KeyCode.Space))
+            // {
+            //     SkipDialog();
+            // }
         }
 
         public void Show()
