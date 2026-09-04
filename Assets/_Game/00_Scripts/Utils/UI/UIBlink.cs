@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Slafurry.Utils.UI
 {
@@ -20,6 +22,11 @@ namespace Slafurry.Utils.UI
         [SerializeField] private bool playOnEnable = true;
         [SerializeField] private bool useUnscaledTime = true;
         [SerializeField] private bool disableInteractionWhileDim = false;
+
+        [Header("Events")]
+        [SerializeField] private UnityEvent onBlinkComplete;
+
+        public event Action OnBlinkComplete;
 
         private Coroutine _routine;
 
@@ -79,6 +86,9 @@ namespace Slafurry.Utils.UI
             }
             canvasGroup.alpha = maxAlpha;
             _routine = null;
+
+            OnBlinkComplete?.Invoke();
+            onBlinkComplete?.Invoke();
         }
 
         private IEnumerator FadeAlpha(float from, float to)

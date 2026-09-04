@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 using Game.Dialog;
@@ -12,6 +14,7 @@ namespace Game.UI.HUD
         [Header("UI References")]
         [SerializeField] private TextMeshProUGUI nameText;
         [SerializeField] private TextMeshProUGUI dialogText;
+        [SerializeField] private Image spriteImage;
         [SerializeField] private GameObject nextDialogClue;
         [SerializeField] private GameObject dialogUIPrefab;
 
@@ -33,11 +36,17 @@ namespace Game.UI.HUD
         [SerializeField] private UnityEvent onHide;
         [SerializeField] private UnityEvent onSkip;
 
-        private DialogPane dialogPane;
+        public event Action OnShow;
+        public event Action OnDialogStart;
+        public event Action OnTypingComplete;
+        public event Action OnDialogComplete;
+        public event Action OnHide;
+        public event Action OnSkip;
 
+        private DialogBucket currentBucket;
+        private int currentIndex;
         private bool isLast;
         private bool isTyping;
-
         private string currentDialog;
         private Coroutine typingCoroutine;
 
@@ -45,40 +54,76 @@ namespace Game.UI.HUD
         {
             if (dialogUIPrefab == null)
                 dialogUIPrefab = gameObject;
-
-            dialogPane = GetComponent<DialogPane>();
         }
 
         private void Update()
         {
-            if (!allowSkip)
+            if (!allowSkip || !dialogUIPrefab.activeSelf)
                 return;
+        }
 
-            if (!dialogUIPrefab.activeSelf)
-                return;
+        public void StartDialog(DialogBucket bucket)
+        {
+            currentBucket = bucket;
+            currentIndex = 0;
 
-            // if (Input.GetKeyDown(KeyCode.Space))
-            // {
-            //     SkipDialog();
-            // }
+            Show();
+            ShowCurrentDialog();
         }
 
         public void Show()
         {
             Pause.On("Dialog");
-
             dialogUIPrefab.SetActive(true);
-
+            OnShow?.Invoke();
             onShow?.Invoke();
         }
 
         public void Hide()
         {
             Pause.Off("Dialog");
-
             dialogUIPrefab.SetActive(false);
-
+            OnHide?.Invoke();
             onHide?.Invoke();
+        }
+
+        public void NextDialog()
+        {
+            if (currentBucket == null)
+                return;
+
+            if (isTyping)
+            {
+                if (typingCoroutine != null)
+                {
+                    StopCoroutine(typingCoroutine);
+                    typingCoroutine = null;
+                }
+
+                StopTypeSfx();
+                dialogText.text = currentDialog;
+                isTyping = false;
+
+                OnTypingComplete?.Invoke();
+                onTypingComplete?.Invoke();
+
+                if (!isLast)
+                    nextDialogClue.SetActive(true);
+
+                return;
+            }
+
+            if (isLast)
+            {
+                OnDialogComplete?.Invoke();
+                onDialogComplete?.Invoke();
+                isLast = false;
+                Hide();
+                return;
+            }
+
+            currentIndex++;
+            ShowCurrentDialog();
         }
 
         public void SkipDialog()
@@ -90,24 +135,35 @@ namespace Game.UI.HUD
             }
 
             StopTypeSfx();
-
             isTyping = false;
             isLast = false;
 
+            OnSkip?.Invoke();
             onSkip?.Invoke();
 
             Hide();
         }
 
-        public void SetDialog(
-            string characterName,
-            string dialog,
-            bool isLast)
+        private void ShowCurrentDialog()
         {
-            nameText.text = characterName;
+            Dialog dialog = currentBucket.dialogs[currentIndex];
+            isLast = currentIndex >= currentBucket.dialogs.Length - 1;
 
-            currentDialog = dialog;
-            this.isLast = isLast;
+            nameText.text = dialog.name;
+            currentDialog = dialog.dialog;
+
+            if (spriteImage != null)
+            {
+                if (dialog.sprite != null)
+                {
+                    spriteImage.sprite = dialog.sprite;
+                    spriteImage.gameObject.SetActive(true);
+                }
+                else
+                {
+                    spriteImage.gameObject.SetActive(false);
+                }
+            }
 
             nextDialogClue.SetActive(false);
 
@@ -117,6 +173,7 @@ namespace Game.UI.HUD
                 typingCoroutine = null;
             }
 
+            OnDialogStart?.Invoke();
             onDialogStart?.Invoke();
 
             typingCoroutine = StartCoroutine(TypeDialog());
@@ -132,80 +189,19 @@ namespace Game.UI.HUD
             foreach (char c in currentDialog)
             {
                 dialogText.text += c;
-
                 yield return new WaitForSecondsRealtime(typingSpeed);
             }
 
             StopTypeSfx();
-
             dialogText.text = currentDialog;
-
             isTyping = false;
             typingCoroutine = null;
 
-            // Typing selesai untuk dialog ini.
+            OnTypingComplete?.Invoke();
             onTypingComplete?.Invoke();
 
-            // Hanya tampilkan clue kalau masih ada dialog berikutnya.
             if (!isLast)
-            {
                 nextDialogClue.SetActive(true);
-            }
-
-            // Kalau isLast, JANGAN invoke onDialogComplete di sini.
-            // Player harus menekan NextDialog() sekali lagi.
-        }
-
-        public void NextDialog()
-        {
-            // =====================================================
-            // 1. MASIH TYPING
-            //    → Skip typing, tapi BELUM lanjut dialog.
-            // =====================================================
-            if (isTyping)
-            {
-                if (typingCoroutine != null)
-                {
-                    StopCoroutine(typingCoroutine);
-                    typingCoroutine = null;
-                }
-
-                StopTypeSfx();
-
-                dialogText.text = currentDialog;
-
-                isTyping = false;
-
-                onTypingComplete?.Invoke();
-
-                if (!isLast)
-                {
-                    nextDialogClue.SetActive(true);
-                }
-
-                return;
-            }
-
-            // =====================================================
-            // 2. SUDAH SELESAI TYPING + DIALOG TERAKHIR
-            //    → Input berikutnya baru menyelesaikan dialog.
-            // =====================================================
-            if (isLast)
-            {
-                onDialogComplete?.Invoke();
-
-                isLast = false;
-
-                Hide();
-
-                return;
-            }
-
-            // =====================================================
-            // 3. SUDAH SELESAI TYPING + MASIH ADA DIALOG
-            //    → Lanjut ke dialog berikutnya.
-            // =====================================================
-            dialogPane.NextDialog();
         }
 
         private void PlayTypeSfx()
@@ -220,10 +216,8 @@ namespace Game.UI.HUD
 
         private void StopTypeSfx()
         {
-            if (audioSource == null)
-                return;
-
-            audioSource.Stop();
+            if (audioSource != null)
+                audioSource.Stop();
         }
     }
 }

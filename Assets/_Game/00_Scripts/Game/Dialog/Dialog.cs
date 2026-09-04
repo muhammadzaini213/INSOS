@@ -7,6 +7,6 @@ namespace Game.Dialog
     {
         public string name;
         public string dialog;
-
+        public Sprite sprite;
     }
 }
