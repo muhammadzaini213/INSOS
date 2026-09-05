@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
-using Game.Dialog;
 using Slafurry.System.Pause;
+using Slafurry.System.Player;
+using Slafurry.System.Audio;
 
 namespace Game.UI.HUD
 {
@@ -22,8 +23,8 @@ namespace Game.UI.HUD
         [SerializeField] private float typingSpeed = 0.03f;
 
         [Header("SFX")]
-        [SerializeField] private AudioSource audioSource;
-        [SerializeField] private AudioClip typeLoopSfx;
+        [SerializeField] private string sfxCategory = "UI";
+        [SerializeField] private string typingSfxName = "Typing";
 
         [Header("Options")]
         [SerializeField] private bool allowSkip = true;
@@ -31,6 +32,7 @@ namespace Game.UI.HUD
         [Header("Events")]
         [SerializeField] private UnityEvent onShow;
         [SerializeField] private UnityEvent onDialogStart;
+        [SerializeField] private UnityEvent onNewLine;
         [SerializeField] private UnityEvent onTypingComplete;
         [SerializeField] private UnityEvent onDialogComplete;
         [SerializeField] private UnityEvent onHide;
@@ -38,6 +40,7 @@ namespace Game.UI.HUD
 
         public event Action OnShow;
         public event Action OnDialogStart;
+        public event Action OnNewLine;
         public event Action OnTypingComplete;
         public event Action OnDialogComplete;
         public event Action OnHide;
@@ -47,6 +50,7 @@ namespace Game.UI.HUD
         private int currentIndex;
         private bool isLast;
         private bool isTyping;
+        private bool currentFireOnNewLine;
         private string currentDialog;
         private Coroutine typingCoroutine;
 
@@ -73,6 +77,17 @@ namespace Game.UI.HUD
 
         public void Show()
         {
+            if (currentBucket != null && currentIndex < currentBucket.dialogs.Length)
+            {
+                Dialog dialog = currentBucket.dialogs[currentIndex];
+                if (spriteImage != null)
+                {
+                    Sprite sprite = dialog.GetSprite(PlayerData.IsBoy);
+                    spriteImage.sprite = sprite;
+                    spriteImage.gameObject.SetActive(sprite != null);
+                }
+            }
+
             Pause.On("Dialog");
             dialogUIPrefab.SetActive(true);
             OnShow?.Invoke();
@@ -148,15 +163,14 @@ namespace Game.UI.HUD
         {
             Dialog dialog = currentBucket.dialogs[currentIndex];
             isLast = currentIndex >= currentBucket.dialogs.Length - 1;
-
-            nameText.text = dialog.name;
-            currentDialog = dialog.dialog;
+            currentFireOnNewLine = dialog.fireOnNewLine;
 
             if (spriteImage != null)
             {
-                if (dialog.sprite != null)
+                Sprite sprite = dialog.GetSprite(PlayerData.IsBoy);
+                if (sprite != null)
                 {
-                    spriteImage.sprite = dialog.sprite;
+                    spriteImage.sprite = sprite;
                     spriteImage.gameObject.SetActive(true);
                 }
                 else
@@ -164,6 +178,9 @@ namespace Game.UI.HUD
                     spriteImage.gameObject.SetActive(false);
                 }
             }
+
+            nameText.text = dialog.name;
+            currentDialog = dialog.dialog;
 
             nextDialogClue.SetActive(false);
 
@@ -183,6 +200,12 @@ namespace Game.UI.HUD
         {
             isTyping = true;
             dialogText.text = "";
+
+            if (currentFireOnNewLine)
+            {
+                OnNewLine?.Invoke();
+                onNewLine?.Invoke();
+            }
 
             PlayTypeSfx();
 
@@ -206,18 +229,12 @@ namespace Game.UI.HUD
 
         private void PlayTypeSfx()
         {
-            if (audioSource == null || typeLoopSfx == null)
-                return;
-
-            audioSource.clip = typeLoopSfx;
-            audioSource.loop = true;
-            audioSource.Play();
+            Audio.PlaySFX2D(sfxCategory, typingSfxName, true);
         }
 
         private void StopTypeSfx()
         {
-            if (audioSource != null)
-                audioSource.Stop();
+            Audio.StopSFX(sfxCategory, typingSfxName);
         }
     }
 }

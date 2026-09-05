@@ -11,6 +11,7 @@ namespace Slafurry.Utils.UI
         [Header("Events")]
         [SerializeField] private UnityEvent onRotationStart;
         [SerializeField] private UnityEvent onRotationStop;
+        [SerializeField] private bool PlayOnEnable = true;
 
         public event Action OnRotationStart;
         public event Action OnRotationStop;
@@ -29,6 +30,12 @@ namespace Slafurry.Utils.UI
                 return;
 
             rectTransform.Rotate(0f, 0f, rotationSpeed * Time.unscaledDeltaTime);
+        }
+
+        private void OnEnable()
+        {
+            if (PlayOnEnable)
+                StartRotation();
         }
 
         public void StartRotation()

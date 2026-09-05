@@ -10,11 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29e55426216fb29eab3098b34141b4d7, type: 3}
-  m_Name: 05_Room_Cleaned
+  m_Name: 04_Room_Cleaned
   m_EditorClassIdentifier: 
   dialogs:
   - name: Kamu
     dialog: "\u201CKamarnya sudah bersih dan rapi!\u201D "
+    boySprite: {fileID: 105375786, guid: 6c86ff326bcb97348b5284af09c032ea, type: 3}
+    girlSprite: {fileID: -1390712713, guid: 1cca5acc6a5631e43a6663a9b50b77bd, type: 3}
+    fireOnNewLine: 0
   - name: Kamu
     dialog: "\u201CSekarang saatnya membersihkan diri agar tubuh tetap segar dan
       bersih.\u201D "
+    boySprite: {fileID: 105375786, guid: 6c86ff326bcb97348b5284af09c032ea, type: 3}
+    girlSprite: {fileID: -1390712713, guid: 1cca5acc6a5631e43a6663a9b50b77bd, type: 3}
+    fireOnNewLine: 1

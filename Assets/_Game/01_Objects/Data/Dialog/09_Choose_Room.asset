@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29e55426216fb29eab3098b34141b4d7, type: 3}
-  m_Name: 07_Go_Breakfast
+  m_Name: 09_Choose_Room
   m_EditorClassIdentifier: 
   dialogs:
   - name: Kamu
-    dialog: "\u201CWah, perutku sudah berbunyi!\u201D "
-  - name: Kamu
-    dialog: "\u201CYuk, kita buat makanan yang mudah dan lezat untuk sarapan!\u201D"
+    dialog: "\u201CPilih ruangan untuk menyiapkan sarapan\u201D  "
+    boySprite: {fileID: -1009646442, guid: d6126f8a825dff8b2b2f99ab27af33a3, type: 3}
+    girlSprite: {fileID: 982518046, guid: 9ba3011b3a0ec17f19cd684362503089, type: 3}
+    fireOnNewLine: 0
