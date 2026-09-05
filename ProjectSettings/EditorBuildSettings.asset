@@ -35,4 +35,34 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Game/04_Scenes/Game/Section 1/07_Section 1.unity
     guid: 53fb3c1e58d4a05149fe9e5dd23322a8
+  - enabled: 1
+    path: Assets/_Game/04_Scenes/Game/Section 1/08_Section 1.unity
+    guid: 1e3b412c740c9181b8cd64bf661e48b5
+  - enabled: 1
+    path: Assets/_Game/04_Scenes/Game/Section 1/09_Section 1.unity
+    guid: 17da549bcddcd393682bbcd077921c32
+  - enabled: 1
+    path: Assets/_Game/04_Scenes/Game/Section 1/10_Section 1.unity
+    guid: ce65945042ccb9a25a003ba01a223226
+  - enabled: 1
+    path: Assets/_Game/04_Scenes/Game/Section 1/11_Section 1.unity
+    guid: bada031085927ec5495121658b5e0dc2
+  - enabled: 1
+    path: Assets/_Game/04_Scenes/Game/Section 1/12_Section 1.unity
+    guid: 361e679ae5e2b3b6d9c950d8146964e8
+  - enabled: 1
+    path: Assets/_Game/04_Scenes/Game/Section 1/13_Section 1.unity
+    guid: b6a79cc17f50380169236d927953b31f
+  - enabled: 1
+    path: Assets/_Game/04_Scenes/Game/Section 1/14_Section 1.unity
+    guid: 124d8d14763813de08a93095a291eb0d
+  - enabled: 1
+    path: Assets/_Game/04_Scenes/Game/Section 1/15_Section 1.unity
+    guid: 5dc741fe31bad685baaee6f74a62c9e1
+  - enabled: 1
+    path: Assets/_Game/04_Scenes/Game/Section 1/16_Section 1.unity
+    guid: eeb69f54b2f51d037bc2d2c805917192
+  - enabled: 1
+    path: Assets/_Game/04_Scenes/Game/Section 1/17_Section 1.unity
+    guid: f3f7987f79a09e6e2b7baf81f5c55990
   m_configObjects: {}

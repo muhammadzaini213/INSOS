@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e55426216fb29eab3098b34141b4d7, type: 3}
+  m_Name: 16_You_FoundIt
+  m_EditorClassIdentifier: 
+  dialogs:
+  - name: Kamu
+    dialog: "\u201CWahhhh, Kamu menemukannya\u201D "
+    boySprite: {fileID: 1724654158, guid: ed6c5e833e05a51c6b80748b84264b88, type: 3}
+    girlSprite: {fileID: -1800043789, guid: cac329636f769723a94f2ce68cef53f9, type: 3}
+    fireOnNewLine: 0
+  - name: Kamu
+    dialog: "\u201CTerima Kasih\u201D"
+    boySprite: {fileID: 1724654158, guid: ed6c5e833e05a51c6b80748b84264b88, type: 3}
+    girlSprite: {fileID: -1800043789, guid: cac329636f769723a94f2ce68cef53f9, type: 3}
+    fireOnNewLine: 1
+  - name: Kamu
+    dialog: "\u201CKalau begitu ayo kita cek perlengkapan apa saja yang akan kita
+      bawa ke sekolah\u201D "
+    boySprite: {fileID: 1724654158, guid: ed6c5e833e05a51c6b80748b84264b88, type: 3}
+    girlSprite: {fileID: -1800043789, guid: cac329636f769723a94f2ce68cef53f9, type: 3}
+    fireOnNewLine: 1

@@ -415,8 +415,8 @@ MonoBehaviour:
   nextDialogClue: {fileID: 792853344}
   dialogUIPrefab: {fileID: 792853344}
   typingSpeed: 0.03
-  audioSource: {fileID: 0}
-  typeLoopSfx: {fileID: 0}
+  sfxCategory: UI
+  typingSfxName: Typing
   allowSkip: 1
   onShow:
     m_PersistentCalls:
@@ -477,7 +477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playLimit: 0
   unlimited: 1
-  sceneName: 02_Section_1
+  sceneName: 02_Section 1
 --- !u!1001 &266783182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1005,8 +1005,8 @@ MonoBehaviour:
   nextDialogClue: {fileID: 1905155639}
   dialogUIPrefab: {fileID: 1037143982}
   typingSpeed: 0.03
-  audioSource: {fileID: 0}
-  typeLoopSfx: {fileID: 0}
+  sfxCategory: UI
+  typingSfxName: Typing
   allowSkip: 1
   onShow:
     m_PersistentCalls:
@@ -3793,8 +3793,8 @@ MonoBehaviour:
   nextDialogClue: {fileID: 1176291007}
   dialogUIPrefab: {fileID: 1176291007}
   typingSpeed: 0.03
-  audioSource: {fileID: 0}
-  typeLoopSfx: {fileID: 0}
+  sfxCategory: UI
+  typingSfxName: Typing
   allowSkip: 1
   onShow:
     m_PersistentCalls:

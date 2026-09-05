@@ -4058,12 +4058,16 @@ MonoBehaviour:
   canvasGroup: {fileID: 1961589876}
   minAlpha: 0.2
   maxAlpha: 1
-  blinkSpeed: 10
+  blinkSpeed: 5
   infinite: 1
   blinkCount: 3
   playOnEnable: 0
   useUnscaledTime: 1
   disableInteractionWhileDim: 0
+  randomBlink: 0
+  randomBlinkChance: 0.5
+  minRandomDelay: 0.5
+  maxRandomDelay: 2
   onBlinkComplete:
     m_PersistentCalls:
       m_Calls: []
