@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Slafurry.Utils.UI
 {
@@ -16,6 +18,11 @@ namespace Slafurry.Utils.UI
         [SerializeField] private float duration = 0.2f;
         [SerializeField] private AnimationCurve curve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
         [SerializeField] private bool useUnscaledTime = true;
+
+        [Header("Events")]
+        [SerializeField] private UnityEvent onPunchComplete;
+
+        public event Action OnPunchComplete;
 
         private Vector3 _originalScale;
         private Coroutine _routine;
@@ -42,6 +49,9 @@ namespace Slafurry.Utils.UI
 
             target.localScale = _originalScale;
             _routine = null;
+
+            OnPunchComplete?.Invoke();
+            onPunchComplete?.Invoke();
         }
 
         private IEnumerator Scale(Vector3 from, Vector3 to, float dur)

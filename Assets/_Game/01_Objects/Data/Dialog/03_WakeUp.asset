@@ -15,5 +15,17 @@ MonoBehaviour:
   dialogs:
   - name: Kamu
     dialog: "\"Woaaaaah\u2026.\u201D"
+    boySprite: {fileID: 350366561, guid: b46b5bd87ae78ef40a429f025b84e72c, type: 3}
+    girlSprite: {fileID: -2032419955, guid: d784a5572c263be4db60196552f18e9a, type: 3}
+    fireOnNewLine: 0
   - name: Kamu
     dialog: "\u201CSudah pagi! Kita harus segera bersiap untuk berangkat ke sekolah.\u201D "
+    boySprite: {fileID: 105375786, guid: 6c86ff326bcb97348b5284af09c032ea, type: 3}
+    girlSprite: {fileID: -1390712713, guid: 1cca5acc6a5631e43a6663a9b50b77bd, type: 3}
+    fireOnNewLine: 1
+  - name: Kamu
+    dialog: "\u201CSebelum bersiap, yuk kita mulai dengan membersihkan dan merapikan
+      kamar tidur!\u201D "
+    boySprite: {fileID: 105375786, guid: 6c86ff326bcb97348b5284af09c032ea, type: 3}
+    girlSprite: {fileID: -1390712713, guid: 1cca5acc6a5631e43a6663a9b50b77bd, type: 3}
+    fireOnNewLine: 1

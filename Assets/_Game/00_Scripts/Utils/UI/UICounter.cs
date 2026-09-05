@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 
 namespace Slafurry.Utils.UI
@@ -15,6 +17,11 @@ namespace Slafurry.Utils.UI
         [SerializeField] private float duration = 0.5f;
         [SerializeField] private string format = "N0"; // e.g. "N0" -> 1,500
         [SerializeField] private bool useUnscaledTime = true;
+
+        [Header("Events")]
+        [SerializeField] private UnityEvent onCountComplete;
+
+        public event Action OnCountComplete;
 
         private float _currentValue;
         private Coroutine _routine;
@@ -55,6 +62,9 @@ namespace Slafurry.Utils.UI
             _currentValue = target;
             label.text = _currentValue.ToString(format);
             _routine = null;
+
+            OnCountComplete?.Invoke();
+            onCountComplete?.Invoke();
         }
     }
 }

@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using System.Collections;
 using Slafurry.System.Scene;
 
@@ -12,6 +14,13 @@ namespace Slafurry.Utils.UI
 
         [Header("Transition")]
         [SerializeField] private float fadeDuration = 1f;
+
+        [Header("Events")]
+        [SerializeField] private UnityEvent onFadeInComplete;
+        [SerializeField] private UnityEvent onFadeOutComplete;
+
+        public event Action OnFadeInComplete;
+        public event Action OnFadeOutComplete;
 
         private Coroutine currentRoutine;
 
@@ -98,6 +107,13 @@ namespace Slafurry.Utils.UI
             if (Mathf.Approximately(targetAlpha, 0f))
             {
                 fadeImage.gameObject.SetActive(false);
+                OnFadeOutComplete?.Invoke();
+                onFadeOutComplete?.Invoke();
+            }
+            else
+            {
+                OnFadeInComplete?.Invoke();
+                onFadeInComplete?.Invoke();
             }
 
             currentRoutine = null;

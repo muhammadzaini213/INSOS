@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e55426216fb29eab3098b34141b4d7, type: 3}
+  m_Name: 06_Clean_Mirror
+  m_EditorClassIdentifier: 
+  dialogs:
+  - name: Kamu
+    dialog: '"Sepertinya cerminnya buram sekali"'
+    boySprite: {fileID: 105375786, guid: 6c86ff326bcb97348b5284af09c032ea, type: 3}
+    girlSprite: {fileID: -1390712713, guid: 1cca5acc6a5631e43a6663a9b50b77bd, type: 3}
+    fireOnNewLine: 0
+  - name: Kamu
+    dialog: '"Bagaimana kalau kita bersihkan dahulu?'
+    boySprite: {fileID: 105375786, guid: 6c86ff326bcb97348b5284af09c032ea, type: 3}
+    girlSprite: {fileID: -1390712713, guid: 1cca5acc6a5631e43a6663a9b50b77bd, type: 3}
+    fireOnNewLine: 1
