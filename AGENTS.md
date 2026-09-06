@@ -58,7 +58,7 @@ Assets/
 │   ├── 03_Audio/          # Audio files
 │   ├── 04_Scenes/         # See Scene Flow below
 │   └── 05_Settings/       # URP, ScriptableObjects
-├── Editor/                # Custom editor tools (GameAssetCreator, PlayerDataEditor, CharacterSpriteEditor)
+├── Editor/                # Custom editor tools (GameAssetCreator, PlayerDataEditor, CharacterSpriteEditor, BuildScript)
 ├── Resources/             # Runtime-loaded assets (Congratulations animation frames)
 └── _Vendor/               # Third-party (NavMeshComponents, TextMeshPro)
 ```
@@ -94,5 +94,13 @@ Assets/
 ## Git Workflow
 - Branch from `main`
 - Commit prefixes observed: `feat:`, `fix:`, `build:`, `Setup/`
-- No CI/CD configured
 - `.csproj`/`.sln` files are gitignored but exist locally (committed before gitignore rule)
+
+## CI/CD
+- **Workflow**: `.github/workflows/build.yml` — builds Android + WebGL, deploys to itch.io via Butler
+- **Build script**: `Assets/Editor/BuildScript.cs` — called by CI via `-executeMethod BuildScript.Build`
+- **Runners**: `macos-latest` (both platforms — `buildalon` requires pre-installed Unity Hub)
+- **License activation**: `buildalon/activate-unity-license@v2` with `UNITY_EMAIL` + `UNITY_PASSWORD` secrets
+- **Required secrets**: `UNITY_EMAIL`, `UNITY_PASSWORD`, `BUTLER_API_KEY`
+- **itch.io channels**: `android` (APK), `html5` (WebGL)
+- **Android keystore**: auto-generated during CI (alias `insos`, password `insos123`) — not in repo
