@@ -22,7 +22,8 @@ permissions:
   contents: write
 
 env:
-  UNITY_PROJECT_PATH: "."
+  UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+  UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
 
   ITCH_USER: project-setara
   ITCH_GAME: insos
@@ -98,19 +99,6 @@ jobs:
             Library-${{ matrix.target }}-
             Library-
 
-      - name: Setup Unity
-        uses: buildalon/unity-setup@v2
-        with:
-          version-file: ProjectSettings/ProjectVersion.txt
-          build-targets: ${{ matrix.target }}
-
-      - name: Activate Unity license
-        uses: buildalon/activate-unity-license@v2
-        with:
-          license: Personal
-          username: ${{ secrets.UNITY_EMAIL }}
-          password: ${{ secrets.UNITY_PASSWORD }}
-
       - name: Generate Android keystore
         if: matrix.target == 'Android'
         shell: bash
@@ -124,43 +112,12 @@ jobs:
             -dname "CN=Setara Project, OU=Dev, O=Setara, L=ID, ST=ID, C=ID"
 
       - name: Build Unity project
-        uses: buildalon/unity-action@v3
+        uses: game-ci/unity-builder@v4
         with:
-          args: >-
-            -quit
-            -batchmode
-            -nographics
-            -projectPath "${{ env.UNITY_PROJECT_PATH }}"
-            -buildTarget ${{ matrix.target }}
-            -executeMethod BuildScript.Build
-            -logFile "${{ github.workspace }}/unity-build.log"
-
-      - name: Diagnose Unity failure
-        if: failure()
-        shell: bash
-        run: |
-          echo "UNITY BUILD FAILED — target: ${{ matrix.target }}"
-          if [ -f "${GITHUB_WORKSPACE}/unity-build.log" ]; then
-            echo "=== ERRORS ==="
-            grep -n -E "error CS|error:|Error|Exception|Build failed|BuildScript" \
-              "${GITHUB_WORKSPACE}/unity-build.log" | tail -100 || true
-            echo ""
-            echo "=== LAST 200 LINES ==="
-            tail -200 "${GITHUB_WORKSPACE}/unity-build.log"
-          else
-            echo "Build log not generated."
-          fi
-
-      - name: Verify build output
-        shell: bash
-        run: |
-          if [ ! -d "${{ matrix.output }}" ]; then
-            echo "::error::Build output not found: ${{ matrix.output }}"
-            if [ -d build ]; then find build -maxdepth 4 -print; fi
-            exit 1
-          fi
-          echo "Build OK: ${{ matrix.output }}"
-          find "${{ matrix.output }}" -maxdepth 4 -type f | head -50
+          unityVersion: 2022.3.62f3
+          targetPlatform: ${{ matrix.target }}
+          buildMethod: BuildScript.Build
+          allowDirtyBuild: true
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
