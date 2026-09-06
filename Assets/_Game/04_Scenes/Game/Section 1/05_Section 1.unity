@@ -225,6 +225,10 @@ MonoBehaviour:
   playOnEnable: 1
   useUnscaledTime: 1
   disableInteractionWhileDim: 0
+  randomBlink: 0
+  randomBlinkChance: 0.5
+  minRandomDelay: 0.5
+  maxRandomDelay: 2
   onBlinkComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -655,7 +659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playLimit: 0
   unlimited: 1
-  sceneName: 04_Section 1
+  sceneName: 06_Section 1
 --- !u!1 &51387707
 GameObject:
   m_ObjectHideFlags: 0
@@ -3932,6 +3936,10 @@ MonoBehaviour:
   playOnEnable: 1
   useUnscaledTime: 1
   disableInteractionWhileDim: 0
+  randomBlink: 0
+  randomBlinkChance: 0.5
+  minRandomDelay: 0.5
+  maxRandomDelay: 2
   onBlinkComplete:
     m_PersistentCalls:
       m_Calls: []

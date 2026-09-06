@@ -1,7 +1,7 @@
 using UnityEngine;
 using Slafurry.System.Player;
 
-namespace Slafurry.Game
+namespace Slafurry.Game.Character
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public class CharacterSpriteRenderer : MonoBehaviour

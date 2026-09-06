@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using Slafurry.Game;
+using Slafurry.Game.Character;
 using Slafurry.System.Player;
 
 namespace Slafurry.Editor

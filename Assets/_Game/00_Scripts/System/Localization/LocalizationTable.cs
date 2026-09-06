@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Slafurry.Utils.Attributes;
 
 namespace Slafurry.System.Localization
 {
+    [GameAssetCreator("Game/Localization", "Localization Table", order: 1)]
     [CreateAssetMenu(fileName = "LocalizationTable", menuName = "Game/Localization/Table")]
     public class LocalizationTable : ScriptableObject
     {

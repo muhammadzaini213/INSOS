@@ -794,7 +794,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 661636373}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 759981226}
+        m_TargetAssemblyTypeName: Slafurry.UI.Menu.GenderSelector, Assembly-CSharp
+        m_MethodName: SelectBoy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &661636373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -978,6 +990,7 @@ GameObject:
   - component: {fileID: 759981222}
   - component: {fileID: 759981225}
   - component: {fileID: 759981223}
+  - component: {fileID: 759981226}
   m_Layer: 5
   m_Name: === Gender ===
   m_TagString: Untagged
@@ -1040,6 +1053,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 759981221}
   m_CullTransparentMesh: 1
+--- !u!114 &759981226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759981221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ecc6268efec22458bf47da088d78e19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boyImage: {fileID: 661636373}
+  girlImage: {fileID: 2024201109}
+  dimAlpha: 0.6
+  selectedAlpha: 1
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1811,7 +1840,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2024201109}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 759981226}
+        m_TargetAssemblyTypeName: Slafurry.UI.Menu.GenderSelector, Assembly-CSharp
+        m_MethodName: SelectGirl
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2024201109
 MonoBehaviour:
   m_ObjectHideFlags: 0

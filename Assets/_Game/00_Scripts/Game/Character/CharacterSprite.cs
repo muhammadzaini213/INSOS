@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Slafurry.System.Player;
 
-namespace Slafurry.Game
+namespace Slafurry.Game.Character
 {
     [RequireComponent(typeof(Image))]
     public class CharacterSprite : MonoBehaviour
