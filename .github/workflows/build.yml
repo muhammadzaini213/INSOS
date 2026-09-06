@@ -1,0 +1,284 @@
+name: Build & Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      platforms:
+        description: "Which platform(s) to build."
+        required: false
+        type: choice
+        default: "All"
+        options:
+          - "All"
+          - "Android"
+          - "WebGL"
+      release_tag:
+        description: "Optional release tag, e.g. v1.0.0."
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+env:
+  UNITY_PROJECT_PATH: "."
+
+  ITCH_USER: project-setara
+  ITCH_GAME: insos
+
+  ITCH_CHANNEL_ANDROID: android
+  ITCH_CHANNEL_WEBGL: html5
+
+jobs:
+
+  # ============================================================
+  # PREPARE
+  # ============================================================
+
+  prepare:
+    name: Prepare build matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Determine build matrix
+        id: set-matrix
+        shell: bash
+        run: |
+          set -e
+
+          PLATFORM="${{ inputs.platforms }}"
+
+          ANDROID_ENTRY='{"name":"Android","os":"ubuntu-latest","target":"Android","artifact":"Build-Android","output":"build/Android"}'
+          WEBGL_ENTRY='{"name":"WebGL","os":"ubuntu-latest","target":"WebGL","artifact":"Build-WebGL","output":"build/WebGL"}'
+
+          case "$PLATFORM" in
+            Android)
+              MATRIX="{\"include\":[${ANDROID_ENTRY}]}"
+              ;;
+            WebGL)
+              MATRIX="{\"include\":[${WEBGL_ENTRY}]}"
+              ;;
+            *)
+              MATRIX="{\"include\":[${ANDROID_ENTRY},${WEBGL_ENTRY}]}"
+              ;;
+          esac
+
+          echo "matrix=${MATRIX}" >> "$GITHUB_OUTPUT"
+          echo "PLATFORMS: ${PLATFORM:-All}"
+          echo "$MATRIX"
+
+  # ============================================================
+  # BUILD
+  # ============================================================
+
+  build:
+    name: Build ${{ matrix.name }}
+    needs: prepare
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-${{ matrix.target }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-${{ matrix.target }}-
+            Library-
+
+      - name: Setup Unity
+        uses: buildalon/unity-setup@v2
+        with:
+          version-file: ProjectSettings/ProjectVersion.txt
+          build-targets: ${{ matrix.target }}
+
+      - name: Activate Unity license
+        uses: buildalon/activate-unity-license@v2
+        with:
+          license: Personal
+          username: ${{ secrets.UNITY_EMAIL }}
+          password: ${{ secrets.UNITY_PASSWORD }}
+
+      - name: Generate Android keystore
+        if: matrix.target == 'Android'
+        shell: bash
+        run: |
+          keytool -genkey -v \
+            -keystore release.keystore \
+            -alias insos \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -storepass insos123 \
+            -keypass insos123 \
+            -dname "CN=Setara Project, OU=Dev, O=Setara, L=ID, ST=ID, C=ID"
+
+      - name: Build Unity project
+        uses: buildalon/unity-action@v3
+        with:
+          args: >-
+            -quit
+            -batchmode
+            -nographics
+            -projectPath "${{ env.UNITY_PROJECT_PATH }}"
+            -buildTarget ${{ matrix.target }}
+            -executeMethod BuildScript.Build
+            -logFile "${{ github.workspace }}/unity-build.log"
+
+      - name: Diagnose Unity failure
+        if: failure()
+        shell: bash
+        run: |
+          echo "UNITY BUILD FAILED — target: ${{ matrix.target }}"
+          if [ -f "${GITHUB_WORKSPACE}/unity-build.log" ]; then
+            echo "=== ERRORS ==="
+            grep -n -E "error CS|error:|Error|Exception|Build failed|BuildScript" \
+              "${GITHUB_WORKSPACE}/unity-build.log" | tail -100 || true
+            echo ""
+            echo "=== LAST 200 LINES ==="
+            tail -200 "${GITHUB_WORKSPACE}/unity-build.log"
+          else
+            echo "Build log not generated."
+          fi
+
+      - name: Verify build output
+        shell: bash
+        run: |
+          if [ ! -d "${{ matrix.output }}" ]; then
+            echo "::error::Build output not found: ${{ matrix.output }}"
+            if [ -d build ]; then find build -maxdepth 4 -print; fi
+            exit 1
+          fi
+          echo "Build OK: ${{ matrix.output }}"
+          find "${{ matrix.output }}" -maxdepth 4 -type f | head -50
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.output }}
+          if-no-files-found: error
+          retention-days: 7
+
+  # ============================================================
+  # DEPLOY TO ITCH.IO
+  # ============================================================
+
+  deploy:
+    name: Deploy to itch.io
+    needs: build
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.value }}
+
+    steps:
+
+      - name: Resolve version
+        id: version
+        shell: bash
+        run: |
+          if [ -n "${{ inputs.release_tag }}" ]; then
+            VERSION="${{ inputs.release_tag }}"
+          else
+            VERSION="${GITHUB_SHA::7}"
+          fi
+          echo "value=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "VERSION: ${VERSION}"
+
+      - name: Download Android build
+        if: inputs.platforms == 'All' || inputs.platforms == 'Android' || inputs.platforms == ''
+        uses: actions/download-artifact@v4
+        with:
+          name: Build-Android
+          path: builds/android
+
+      - name: Download WebGL build
+        if: inputs.platforms == 'All' || inputs.platforms == 'WebGL' || inputs.platforms == ''
+        uses: actions/download-artifact@v4
+        with:
+          name: Build-WebGL
+          path: builds/webgl
+
+      - name: Install Butler
+        shell: bash
+        run: |
+          curl -L -o butler.zip https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default
+          unzip -o butler.zip -d butler
+          chmod +x butler/butler
+          echo "${GITHUB_WORKSPACE}/butler" >> "$GITHUB_PATH"
+
+      - name: Verify Butler
+        run: butler -V
+
+      - name: Push Android to itch.io
+        if: inputs.platforms == 'All' || inputs.platforms == 'Android' || inputs.platforms == ''
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        shell: bash
+        run: |
+          butler push builds/android \
+            "${ITCH_USER}/${ITCH_GAME}:${ITCH_CHANNEL_ANDROID}" \
+            --userversion "${{ steps.version.outputs.value }}"
+
+      - name: Push WebGL to itch.io
+        if: inputs.platforms == 'All' || inputs.platforms == 'WebGL' || inputs.platforms == ''
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        shell: bash
+        run: |
+          butler push builds/webgl \
+            "${ITCH_USER}/${ITCH_GAME}:${ITCH_CHANNEL_WEBGL}" \
+            --userversion "${{ steps.version.outputs.value }}"
+
+  # ============================================================
+  # GITHUB RELEASE
+  # ============================================================
+
+  github-release:
+    name: Publish GitHub Release
+    needs: [build, deploy]
+    if: inputs.release_tag != ''
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Download Android build
+        if: inputs.platforms == 'All' || inputs.platforms == 'Android'
+        uses: actions/download-artifact@v4
+        with:
+          name: Build-Android
+          path: builds/Android
+
+      - name: Download WebGL build
+        if: inputs.platforms == 'All' || inputs.platforms == 'WebGL'
+        uses: actions/download-artifact@v4
+        with:
+          name: Build-WebGL
+          path: builds/WebGL
+
+      - name: Zip platform builds
+        shell: bash
+        run: |
+          cd builds
+          [ -d Android ] && zip -r "../${{ inputs.release_tag }}-Android.zip" Android
+          [ -d WebGL ] && zip -r "../${{ inputs.release_tag }}-WebGL.zip" WebGL
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.release_tag }}
+          name: ${{ inputs.release_tag }}
+          files: "*.zip"
+          generate_release_notes: true
+          draft: false
+          prerelease: false

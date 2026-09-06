@@ -4,20 +4,31 @@ using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(RectTransform))]
 [RequireComponent(typeof(CanvasGroup))]
-public class DragItemTrigger : BaseTrigger,
-    IBeginDragHandler,
-    IDragHandler,
-    IEndDragHandler
+public class DragItemTrigger : BaseTrigger, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [Header("Drag")]
-    [SerializeField] private Canvas canvas;
-    [SerializeField] private bool canDrag = true;
+    [SerializeField]
+    private Canvas canvas;
+
+    [SerializeField]
+    private bool canDrag = true;
 
     [Header("Events")]
-    [SerializeField] private UnityEvent onDragStart;
-    [SerializeField] private UnityEvent onDragEnd;
-    [SerializeField] private UnityEvent onDropSuccess;
-    [SerializeField] private UnityEvent onDropFailed;
+    [SerializeField]
+    private UnityEvent onDragStart;
+
+    [SerializeField]
+    private UnityEvent onDragEnd;
+
+    [SerializeField]
+    private UnityEvent onDropSuccess;
+
+    [SerializeField]
+    private UnityEvent onDropFailed;
+
+    [Header("Smoothing")]
+    [SerializeField]
+    private float smoothSpeed = 15f;
 
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
@@ -27,6 +38,7 @@ public class DragItemTrigger : BaseTrigger,
 
     private bool isDragging;
     private bool dropSuccess;
+    private Vector2 velocity;
 
     private void Awake()
     {
@@ -49,6 +61,7 @@ public class DragItemTrigger : BaseTrigger,
 
         isDragging = true;
         dropSuccess = false;
+        velocity = Vector2.zero;
 
         originalParent = transform.parent;
         originalPosition = rectTransform.anchoredPosition;
@@ -67,8 +80,16 @@ public class DragItemTrigger : BaseTrigger,
         if (!isDragging)
             return;
 
-        rectTransform.anchoredPosition +=
-            eventData.delta / canvas.scaleFactor;
+        Vector2 targetPos = rectTransform.anchoredPosition + eventData.delta / canvas.scaleFactor;
+
+        rectTransform.anchoredPosition = Vector2.SmoothDamp(
+            rectTransform.anchoredPosition,
+            targetPos,
+            ref velocity,
+            Time.deltaTime,
+            smoothSpeed,
+            Time.deltaTime
+        );
     }
 
     public void OnEndDrag(PointerEventData eventData)
