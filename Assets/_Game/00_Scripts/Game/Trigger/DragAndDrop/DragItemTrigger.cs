@@ -28,7 +28,8 @@ public class DragItemTrigger : BaseTrigger, IBeginDragHandler, IDragHandler, IEn
 
     [Header("Smoothing")]
     [SerializeField]
-    private float smoothSpeed = 15f;
+    [Range(0.5f, 1f)]
+    private float smoothFactor = 0.9f;
 
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
@@ -38,7 +39,7 @@ public class DragItemTrigger : BaseTrigger, IBeginDragHandler, IDragHandler, IEn
 
     private bool isDragging;
     private bool dropSuccess;
-    private Vector2 velocity;
+    private Vector2 lastDelta;
 
     private void Awake()
     {
@@ -61,7 +62,7 @@ public class DragItemTrigger : BaseTrigger, IBeginDragHandler, IDragHandler, IEn
 
         isDragging = true;
         dropSuccess = false;
-        velocity = Vector2.zero;
+        lastDelta = Vector2.zero;
 
         originalParent = transform.parent;
         originalPosition = rectTransform.anchoredPosition;
@@ -80,16 +81,9 @@ public class DragItemTrigger : BaseTrigger, IBeginDragHandler, IDragHandler, IEn
         if (!isDragging)
             return;
 
-        Vector2 targetPos = rectTransform.anchoredPosition + eventData.delta / canvas.scaleFactor;
+        lastDelta = Vector2.Lerp(lastDelta, eventData.delta, smoothFactor);
 
-        rectTransform.anchoredPosition = Vector2.SmoothDamp(
-            rectTransform.anchoredPosition,
-            targetPos,
-            ref velocity,
-            Time.deltaTime,
-            smoothSpeed,
-            Time.deltaTime
-        );
+        rectTransform.anchoredPosition += lastDelta / canvas.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData)
