@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e0307bdc683facf99b48dbde6ecc84f, type: 3}
+  m_Name: MusicData
+  m_EditorClassIdentifier: 
+  tracks:
+  - trackName: MainMenuMusic
+    clip: {fileID: 8300000, guid: 0f0ffe7145ea3d5a7bac7cff73bde2f9, type: 3}
+    volume: 7.32
+  - trackName: MorningRoutineMusic
+    clip: {fileID: 8300000, guid: 9372ad3eda2440857a6d24c5cc7e8e8b, type: 3}
+    volume: 7.32
+  - trackName: CleaningMusic
+    clip: {fileID: 8300000, guid: e5e991441aff6ea7c8060fb599cf77a6, type: 3}
+    volume: 7.32
+  - trackName: CardPlayMusic
+    clip: {fileID: 8300000, guid: 9a088500b8a8ad667a60d72bfff7673d, type: 3}
+    volume: 7.32
+  sceneTracks:
+  - sceneName: StartMenu
+    trackName: MainMenuMusic
+  - sceneName: ChooseGenderMenu
+    trackName: MainMenuMusic
+  - sceneName: ChooseActivityMenu
+    trackName: MainMenuMusic
+  - sceneName: Section 1
+    trackName: MorningRoutineMusic
+  - sceneName: Section 2
+    trackName: CleaningMusic

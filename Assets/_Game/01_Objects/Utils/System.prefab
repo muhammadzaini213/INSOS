@@ -291,6 +291,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ace2740ad9c01b3e8dfd2889fe2e10f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicData: {fileID: 0}
+  musicData: {fileID: 11400000, guid: abcaaff76dd57710094fbfdd90a50868, type: 2}
   musicSource: {fileID: 6381803026351610239}
-  sceneTracks: []
