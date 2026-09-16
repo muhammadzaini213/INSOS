@@ -13,33 +13,56 @@ namespace Slafurry.Utils.UI
     /// </summary>
     public class UISlide : MonoBehaviour
     {
-        public enum Direction { Top, Bottom, Left, Right }
+        public enum Direction
+        {
+            Top,
+            Bottom,
+            Left,
+            Right,
+        }
 
         [Header("Reference")]
-        [SerializeField] private RectTransform rectTransform;
-        [SerializeField] private RectTransform canvasRect;
+        [SerializeField]
+        private RectTransform rectTransform;
+
+        [SerializeField]
+        private RectTransform canvasRect;
 
         [Header("Direction")]
-        [SerializeField] private Direction fromDirection = Direction.Left;
-        [SerializeField] private float extraOffset = 100f;
+        [SerializeField]
+        private Direction fromDirection = Direction.Left;
+
+        [SerializeField]
+        private float extraOffset = 100f;
 
         [Header("Timing")]
-        [SerializeField] private float duration = 0.5f;
-        [SerializeField] private float delay = 0f;
-        [SerializeField] private AnimationCurve easeCurve =
-            AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+        [SerializeField]
+        private float duration = 0.5f;
+
+        [SerializeField]
+        private float delay = 0f;
+
+        [SerializeField]
+        private AnimationCurve easeCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
 
         [Header("Options")]
-        [SerializeField] private bool playOnEnable = true;
-        [SerializeField] private bool useUnscaledTime = true;
-        [SerializeField] private bool deactivateOnHidden = false;
+        [SerializeField]
+        private bool playOnEnable = true;
+
+        [SerializeField]
+        private bool useUnscaledTime = true;
+
+        [SerializeField]
+        private bool deactivateOnHidden = false;
 
         [Header("Unity Events")]
         [Tooltip("Called when SlideIn() finishes.")]
-        [SerializeField] private UnityEvent onSlideInComplete;
+        [SerializeField]
+        private UnityEvent onSlideInComplete;
 
         [Tooltip("Called when SlideOut() finishes.")]
-        [SerializeField] private UnityEvent onSlideOutComplete;
+        [SerializeField]
+        private UnityEvent onSlideOutComplete;
 
         /// <summary>
         /// Fired when a SlideOut() finishes.
@@ -56,6 +79,8 @@ namespace Slafurry.Utils.UI
         private Vector2 _shownPos;
         private Vector2 _hiddenPos;
         private Coroutine _routine;
+        private bool _positionCaptured;
+        private bool _pendingPlay;
 
         private void Awake()
         {
@@ -69,19 +94,37 @@ namespace Slafurry.Utils.UI
                 if (canvas != null)
                     canvasRect = canvas.rootCanvas.transform as RectTransform;
             }
-
-            _shownPos = rectTransform.anchoredPosition;
-            _hiddenPos = CalculateHiddenPos();
         }
 
         private void OnEnable()
         {
             if (playOnEnable)
+                _pendingPlay = true;
+        }
+
+        private void LateUpdate()
+        {
+            if (_pendingPlay)
+            {
+                _pendingPlay = false;
                 SlideIn();
+            }
+        }
+
+        private void OnDisable()
+        {
+            _pendingPlay = false;
         }
 
         public void SlideIn()
         {
+            if (!_positionCaptured)
+            {
+                _shownPos = rectTransform.anchoredPosition;
+                _hiddenPos = CalculateHiddenPos();
+                _positionCaptured = true;
+            }
+
             rectTransform.anchoredPosition = _hiddenPos;
 
             StartSlide(
@@ -100,6 +143,13 @@ namespace Slafurry.Utils.UI
 
         public void SlideOut()
         {
+            if (!_positionCaptured)
+            {
+                _shownPos = rectTransform.anchoredPosition;
+                _hiddenPos = CalculateHiddenPos();
+                _positionCaptured = true;
+            }
+
             StartSlide(
                 rectTransform.anchoredPosition,
                 _hiddenPos,
@@ -117,17 +167,12 @@ namespace Slafurry.Utils.UI
             );
         }
 
-        private void StartSlide(
-            Vector2 from,
-            Vector2 to,
-            Action onComplete)
+        private void StartSlide(Vector2 from, Vector2 to, Action onComplete)
         {
             if (_routine != null)
                 StopCoroutine(_routine);
 
-            _routine = StartCoroutine(
-                SlideRoutine(from, to, onComplete)
-            );
+            _routine = StartCoroutine(SlideRoutine(from, to, onComplete));
         }
 
         private Vector2 CalculateHiddenPos()
@@ -135,52 +180,29 @@ namespace Slafurry.Utils.UI
             float ownWidth = rectTransform.rect.width;
             float ownHeight = rectTransform.rect.height;
 
-            float screenWidth =
-                canvasRect != null
-                    ? canvasRect.rect.width
-                    : Screen.width;
+            float screenWidth = canvasRect != null ? canvasRect.rect.width : Screen.width;
 
-            float screenHeight =
-                canvasRect != null
-                    ? canvasRect.rect.height
-                    : Screen.height;
+            float screenHeight = canvasRect != null ? canvasRect.rect.height : Screen.height;
 
-            float horizontalDistance =
-                (screenWidth * 0.5f) +
-                (ownWidth * 0.5f) +
-                extraOffset;
+            float horizontalDistance = (screenWidth * 0.5f) + (ownWidth * 0.5f) + extraOffset;
 
-            float verticalDistance =
-                (screenHeight * 0.5f) +
-                (ownHeight * 0.5f) +
-                extraOffset;
+            float verticalDistance = (screenHeight * 0.5f) + (ownHeight * 0.5f) + extraOffset;
 
             return fromDirection switch
             {
-                Direction.Top =>
-                    _shownPos +
-                    new Vector2(0f, verticalDistance),
+                Direction.Top => _shownPos + new Vector2(0f, verticalDistance),
 
-                Direction.Bottom =>
-                    _shownPos -
-                    new Vector2(0f, verticalDistance),
+                Direction.Bottom => _shownPos - new Vector2(0f, verticalDistance),
 
-                Direction.Left =>
-                    _shownPos -
-                    new Vector2(horizontalDistance, 0f),
+                Direction.Left => _shownPos - new Vector2(horizontalDistance, 0f),
 
-                Direction.Right =>
-                    _shownPos +
-                    new Vector2(horizontalDistance, 0f),
+                Direction.Right => _shownPos + new Vector2(horizontalDistance, 0f),
 
-                _ => _shownPos
+                _ => _shownPos,
             };
         }
 
-        private IEnumerator SlideRoutine(
-            Vector2 from,
-            Vector2 to,
-            Action onComplete)
+        private IEnumerator SlideRoutine(Vector2 from, Vector2 to, Action onComplete)
         {
             if (delay > 0f)
             {
@@ -193,22 +215,13 @@ namespace Slafurry.Utils.UI
 
             while (t < duration)
             {
-                t += useUnscaledTime
-                    ? Time.unscaledDeltaTime
-                    : Time.deltaTime;
+                t += useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
 
-                float normalized =
-                    Mathf.Clamp01(t / duration);
+                float normalized = Mathf.Clamp01(t / duration);
 
-                float eased =
-                    easeCurve.Evaluate(normalized);
+                float eased = easeCurve.Evaluate(normalized);
 
-                rectTransform.anchoredPosition =
-                    Vector2.LerpUnclamped(
-                        from,
-                        to,
-                        eased
-                    );
+                rectTransform.anchoredPosition = Vector2.LerpUnclamped(from, to, eased);
 
                 yield return null;
             }
