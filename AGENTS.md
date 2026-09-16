@@ -66,11 +66,9 @@ Assets/
 ### Scene Flow
 **Build order**: `01_StartMenu` → `02_ChooseGenderMenu` → `03_ChooseActivityMenu` → Section 1
 
-**Section 1** has 17 scenes (cutscenes, gameplay rooms, mirror, toothbrushing, kitchen, sandwich, etc.). Sections 2 and 3 directories exist but are **empty**.
+**Section 1** has 17 scenes (cutscenes, gameplay rooms, mirror, toothbrushing, kitchen, sandwich, etc.). **Section 2** has 3 scenes. **Section 3** directory exists but is empty.
 
-**Menu scenes**: `01_StartMenu`, `02_ChooseGenderMenu`, `03_ChooseActivityMenu`, `MainMenu`, `SettingsMenu`, `AboutMenu`
-
-**Prototype scenes**: `CLICK`, `ROTATE`, `DRAG` (in Menu/ directory)
+**Menu scenes**: `01_StartMenu`, `02_ChooseGenderMenu`, `03_ChooseActivityMenu` (in `04_Scenes/Menu/`)
 
 ### Key Packages
 - Input System (`com.unity.inputsystem`) — not legacy Input
