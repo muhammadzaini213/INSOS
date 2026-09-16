@@ -17,9 +17,9 @@ MonoBehaviour:
     dialog: Kukuruyuuuukkkk!
     boySprite: {fileID: 0}
     girlSprite: {fileID: 0}
-    fireOnNewLine: 0
+    fireOnNewLine: 1
   - name: Ayam
     dialog: Kukruyuuuukkkk!
     boySprite: {fileID: 0}
     girlSprite: {fileID: 0}
-    fireOnNewLine: 0
+    fireOnNewLine: 1

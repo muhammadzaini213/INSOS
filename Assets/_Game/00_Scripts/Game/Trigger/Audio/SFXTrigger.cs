@@ -3,18 +3,15 @@ using UnityEngine;
 
 public class SFXTrigger : BaseTrigger
 {
-    [Header("SFX Source")]
-    [SerializeField] private GameObject sfxSource;
 
     [Header("Audio Data")]
     [SerializeField] private string category;
     [SerializeField] private string key;
 
-    private GameObject Source => sfxSource != null ? sfxSource : gameObject;
     public void PlaySfx()
     {
         if (!CanTrigger()) return;
-        Audio.PlaySFX3D(category, key, Source.transform.position);
+        Audio.PlaySFX2D(category, key);
         AddTriggerCount();
     }
 
