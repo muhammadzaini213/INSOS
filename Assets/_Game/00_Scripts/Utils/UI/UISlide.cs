@@ -107,12 +107,19 @@ namespace Slafurry.Utils.UI
             if (_pendingPlay)
             {
                 _pendingPlay = false;
-                SlideIn();
+                Canvas.willRenderCanvases += OnWillRenderCanvases;
             }
+        }
+
+        private void OnWillRenderCanvases()
+        {
+            Canvas.willRenderCanvases -= OnWillRenderCanvases;
+            SlideIn();
         }
 
         private void OnDisable()
         {
+            Canvas.willRenderCanvases -= OnWillRenderCanvases;
             _pendingPlay = false;
         }
 
