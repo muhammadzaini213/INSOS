@@ -48,6 +48,8 @@ namespace Slafurry.Utils.UI
         private Vector2 originPosition;
         private float timeOffset;
         private bool isFloating;
+        private bool _positionCaptured;
+        private bool _pendingPlay;
 
         private void Awake()
         {
@@ -56,15 +58,31 @@ namespace Slafurry.Utils.UI
 
         private void OnEnable()
         {
-            originPosition = rectTransform.anchoredPosition;
             timeOffset = Random.Range(0f, Mathf.PI * 2f);
 
             if (playOnEnable)
-                StartFloat();
+                _pendingPlay = true;
+        }
+
+        private void LateUpdate()
+        {
+            if (_pendingPlay)
+            {
+                _pendingPlay = false;
+                Canvas.willRenderCanvases += OnWillRenderCanvases;
+            }
+        }
+
+        private void OnWillRenderCanvases()
+        {
+            Canvas.willRenderCanvases -= OnWillRenderCanvases;
+            StartFloat();
         }
 
         private void OnDisable()
         {
+            Canvas.willRenderCanvases -= OnWillRenderCanvases;
+            _pendingPlay = false;
             StopFloat();
         }
 
@@ -91,6 +109,12 @@ namespace Slafurry.Utils.UI
         {
             if (isFloating)
                 return;
+
+            if (!_positionCaptured)
+            {
+                originPosition = rectTransform.anchoredPosition;
+                _positionCaptured = true;
+            }
 
             isFloating = true;
             onFloatStart?.Invoke();

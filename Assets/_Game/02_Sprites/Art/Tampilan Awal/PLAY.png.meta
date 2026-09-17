@@ -126,12 +126,12 @@ TextureImporter:
       name: PLAY_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 482
-        width: 1003
-        height: 957
+        x: 487
+        y: 102
+        width: 962
+        height: 875
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

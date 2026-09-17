@@ -1000,7 +1000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playLimit: 0
   unlimited: 1
-  sceneName: 01_StartMenu
+  sceneName: 03_ChooseActivityMenu
 --- !u!114 &759618901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1281,6 +1281,7 @@ GameObject:
   - component: {fileID: 837417013}
   - component: {fileID: 837417010}
   - component: {fileID: 837417017}
+  - component: {fileID: 837417018}
   m_Layer: 5
   m_Name: DialogComplete
   m_TagString: Untagged
@@ -1336,7 +1337,19 @@ MonoBehaviour:
       m_Calls: []
   onDialogStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2115667814}
+        m_TargetAssemblyTypeName: Slafurry.Utils.UI.UIScalePunch, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onNewLine:
     m_PersistentCalls:
       m_Calls: []
@@ -1361,6 +1374,18 @@ MonoBehaviour:
       - m_Target: {fileID: 837417017}
         m_TargetAssemblyTypeName: Slafurry.Utils.UI.UIPop, Assembly-CSharp
         m_MethodName: PopOut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 837417018}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1492,12 +1517,29 @@ MonoBehaviour:
   popOutStartScale: 1
   popOutTargetScale: 0
   useUnscaledTime: 1
+  playOnEnable: 0
   onPopInComplete:
     m_PersistentCalls:
       m_Calls: []
   onPopOutComplete:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &837417018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837417008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: Ambient
+  key: BusSekolah
 --- !u!1 &1108602523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1559,6 +1601,7 @@ MonoBehaviour:
   popOutStartScale: 1
   popOutTargetScale: 0
   useUnscaledTime: 1
+  playOnEnable: 0
   onPopInComplete:
     m_PersistentCalls:
       m_Calls:
@@ -1871,6 +1914,8 @@ GameObject:
   - component: {fileID: 2115667810}
   - component: {fileID: 2115667809}
   - component: {fileID: 2115667813}
+  - component: {fileID: 2115667814}
+  - component: {fileID: 2115667815}
   m_Layer: 5
   m_Name: Person
   m_TagString: Untagged
@@ -1959,6 +2004,7 @@ MonoBehaviour:
   popOutStartScale: 1
   popOutTargetScale: 0
   useUnscaledTime: 1
+  playOnEnable: 0
   onPopInComplete:
     m_PersistentCalls:
       m_Calls:
@@ -2030,6 +2076,77 @@ MonoBehaviour:
   boySprite: {fileID: 983640300, guid: f4d532cde1d3971dcbf62ea74e98c5f4, type: 3}
   girlSprite: {fileID: 645741963, guid: 56c63598c912ad194952a28fc1082935, type: 3}
   updateOnEnable: 1
+--- !u!114 &2115667814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115667807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d76d32d43c97d0597ed3d0c047b9ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  punchScale: 1.2
+  duration: 0.2
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  useUnscaledTime: 1
+  onPunchComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2115667815}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2115667815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115667807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: UI
+  key: Pop
 --- !u!1 &2144198435
 GameObject:
   m_ObjectHideFlags: 0

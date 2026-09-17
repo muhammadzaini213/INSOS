@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,7 +121,259 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Girl _ Gigi Kuning 1_0
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 492
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abdddbeced6533a2380d5637c2717ee6
+      internalID: 665472415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Girl _ Gigi Kuning 1_1
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 492
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 747479e4ded62aef2b95c13aa046415f
+      internalID: -1572700074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Girl _ Gigi Kuning 1_2
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 493
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 098ad4101506d6ce7a169fda6a47b9bf
+      internalID: 794177156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Girl _ Gigi Kuning 1_3
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 479
+        width: 17
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6a4ef79b2fd6101794708675600e965
+      internalID: 470319532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Girl _ Gigi Kuning 1_4
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 485
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f586533f3bef1597871840e34eb3764
+      internalID: -774997230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Girl _ Gigi Kuning 1_5
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 426
+        height: 478
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9328d81c42fc1aba8b501fb03e32ba0d
+      internalID: -314675566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Girl _ Gigi Kuning 1_6
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 474
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58fea9d7df7d7e8dc93debb53f75382d
+      internalID: 914564387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Girl _ Gigi Kuning 1_7
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 475
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ec6fc87a34017e9b9008f338d5fc0bf
+      internalID: 1644293352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Girl _ Gigi Kuning 1_8
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 318
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3627a8f6cdb1eee9948eed190010d18
+      internalID: -990152042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Girl _ Gigi Kuning 1_9
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 264
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c05780429adb63aaae4ecac2ef5f9bc
+      internalID: -2023367425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Girl _ Gigi Kuning 1_10
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 264
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04f54e1b4acb6ac448217a4fdf326f5c
+      internalID: -1257114067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Girl _ Gigi Kuning 1_11
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 180
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5a7b765bafa14f25b9acb3e4f791279
+      internalID: -1814836894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +384,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Girl _ Gigi Kuning 1_0: 665472415
+      Girl _ Gigi Kuning 1_1: -1572700074
+      Girl _ Gigi Kuning 1_10: -1257114067
+      Girl _ Gigi Kuning 1_11: -1814836894
+      Girl _ Gigi Kuning 1_2: 794177156
+      Girl _ Gigi Kuning 1_3: 470319532
+      Girl _ Gigi Kuning 1_4: -774997230
+      Girl _ Gigi Kuning 1_5: -314675566
+      Girl _ Gigi Kuning 1_6: 914564387
+      Girl _ Gigi Kuning 1_7: 1644293352
+      Girl _ Gigi Kuning 1_8: -990152042
+      Girl _ Gigi Kuning 1_9: -2023367425
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

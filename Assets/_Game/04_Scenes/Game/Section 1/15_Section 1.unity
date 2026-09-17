@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 8050947}
   - component: {fileID: 8050946}
   - component: {fileID: 8050945}
+  - component: {fileID: 8050949}
   m_Layer: 5
   m_Name: Pan
   m_TagString: Untagged
@@ -179,7 +180,19 @@ MonoBehaviour:
   canDrag: 1
   onDragStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8050949}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDragEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -189,6 +202,7 @@ MonoBehaviour:
   onDropFailed:
     m_PersistentCalls:
       m_Calls: []
+  smoothFactor: 0.9
 --- !u!225 &8050946
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -239,6 +253,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8050943}
   m_CullTransparentMesh: 1
+--- !u!114 &8050949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8050943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: UI
+  key: Pop
 --- !u!1 &23264739
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +282,7 @@ GameObject:
   - component: {fileID: 23264741}
   - component: {fileID: 23264744}
   - component: {fileID: 23264743}
+  - component: {fileID: 23264745}
   m_Layer: 5
   m_Name: Pillow
   m_TagString: Untagged
@@ -334,7 +365,19 @@ MonoBehaviour:
   canDrag: 1
   onDragStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8050949}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDragEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -344,6 +387,7 @@ MonoBehaviour:
   onDropFailed:
     m_PersistentCalls:
       m_Calls: []
+  smoothFactor: 0.9
 --- !u!225 &23264744
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -356,6 +400,22 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &23264745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23264739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: UI
+  key: Pop
 --- !u!1 &55351132
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +429,7 @@ GameObject:
   - component: {fileID: 55351136}
   - component: {fileID: 55351135}
   - component: {fileID: 55351134}
+  - component: {fileID: 55351138}
   m_Layer: 5
   m_Name: Watering Can
   m_TagString: Untagged
@@ -413,7 +474,19 @@ MonoBehaviour:
   canDrag: 1
   onDragStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8050949}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDragEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -423,6 +496,7 @@ MonoBehaviour:
   onDropFailed:
     m_PersistentCalls:
       m_Calls: []
+  smoothFactor: 0.9
 --- !u!225 &55351135
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -473,6 +547,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55351132}
   m_CullTransparentMesh: 1
+--- !u!114 &55351138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55351132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: UI
+  key: Pop
 --- !u!1 &153503004
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,6 +679,7 @@ GameObject:
   - component: {fileID: 218377430}
   - component: {fileID: 218377429}
   - component: {fileID: 218377428}
+  - component: {fileID: 218377432}
   m_Layer: 5
   m_Name: Brush
   m_TagString: Untagged
@@ -633,7 +724,19 @@ MonoBehaviour:
   canDrag: 1
   onDragStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8050949}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDragEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -643,6 +746,7 @@ MonoBehaviour:
   onDropFailed:
     m_PersistentCalls:
       m_Calls: []
+  smoothFactor: 0.9
 --- !u!225 &218377429
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -693,6 +797,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 218377426}
   m_CullTransparentMesh: 1
+--- !u!114 &218377432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218377426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: UI
+  key: Pop
 --- !u!1 &236838190
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,6 +1035,7 @@ GameObject:
   - component: {fileID: 315824811}
   - component: {fileID: 315824810}
   - component: {fileID: 315824813}
+  - component: {fileID: 315824814}
   m_Layer: 5
   m_Name: Down
   m_TagString: Untagged
@@ -1078,6 +1199,20 @@ MonoBehaviour:
   onPunchComplete:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &315824814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315824808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: UI
+  effectName: Click
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1228,6 +1363,7 @@ GameObject:
   - component: {fileID: 366725597}
   - component: {fileID: 366725596}
   - component: {fileID: 366725595}
+  - component: {fileID: 366725599}
   m_Layer: 5
   m_Name: Pen
   m_TagString: Untagged
@@ -1272,7 +1408,19 @@ MonoBehaviour:
   canDrag: 1
   onDragStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8050949}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDragEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -1282,6 +1430,7 @@ MonoBehaviour:
   onDropFailed:
     m_PersistentCalls:
       m_Calls: []
+  smoothFactor: 0.9
 --- !u!225 &366725596
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1332,6 +1481,167 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 366725593}
   m_CullTransparentMesh: 1
+--- !u!114 &366725599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366725593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: UI
+  key: Pop
+--- !u!1001 &368517842
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 406657097}
+    m_Modifications:
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5694157125134546016, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: m_Name
+      value: Congratulations
+      objectReference: {fileID: 0}
+    - target: {fileID: 6487834587519368045, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: onComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 594407262}
+    - target: {fileID: 6487834587519368045, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: onComplete.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FadeIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6487834587519368045, guid: 7ed91661b0a30533e9be7c60b2323113,
+        type: 3}
+      propertyPath: onComplete.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Slafurry.Utils.UI.UIFade, Assembly-CSharp
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7ed91661b0a30533e9be7c60b2323113, type: 3}
+--- !u!224 &368517843 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 431556323135077383, guid: 7ed91661b0a30533e9be7c60b2323113,
+    type: 3}
+  m_PrefabInstance: {fileID: 368517842}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &368517844 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5694157125134546016, guid: 7ed91661b0a30533e9be7c60b2323113,
+    type: 3}
+  m_PrefabInstance: {fileID: 368517842}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &406657093
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,6 +1655,7 @@ GameObject:
   - component: {fileID: 406657095}
   - component: {fileID: 406657094}
   - component: {fileID: 406657099}
+  - component: {fileID: 406657100}
   m_Layer: 5
   m_Name: ====== GAME ======
   m_TagString: Untagged
@@ -1428,6 +1739,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1764815738}
+  - {fileID: 691852784}
+  - {fileID: 368517843}
   - {fileID: 594407266}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1466,6 +1779,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 406657100}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &406657100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406657093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: Activity
+  key: Resleting
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1597,6 +1938,7 @@ GameObject:
   - component: {fileID: 456087942}
   - component: {fileID: 456087941}
   - component: {fileID: 456087944}
+  - component: {fileID: 456087945}
   m_Layer: 5
   m_Name: Up
   m_TagString: Untagged
@@ -1760,6 +2102,20 @@ MonoBehaviour:
   onPunchComplete:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &456087945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456087939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: UI
+  effectName: Click
 --- !u!1 &528361377
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,6 +2129,7 @@ GameObject:
   - component: {fileID: 528361381}
   - component: {fileID: 528361380}
   - component: {fileID: 528361379}
+  - component: {fileID: 528361383}
   m_Layer: 5
   m_Name: Pen
   m_TagString: Untagged
@@ -1817,7 +2174,19 @@ MonoBehaviour:
   canDrag: 1
   onDragStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8050949}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDragEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -1827,6 +2196,7 @@ MonoBehaviour:
   onDropFailed:
     m_PersistentCalls:
       m_Calls: []
+  smoothFactor: 0.9
 --- !u!225 &528361380
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1877,6 +2247,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528361377}
   m_CullTransparentMesh: 1
+--- !u!114 &528361383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528361377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: UI
+  key: Pop
 --- !u!1 &594407261
 GameObject:
   m_ObjectHideFlags: 0
@@ -2246,6 +2632,7 @@ GameObject:
   - component: {fileID: 689563643}
   - component: {fileID: 689563642}
   - component: {fileID: 689563641}
+  - component: {fileID: 689563645}
   m_Layer: 5
   m_Name: Car
   m_TagString: Untagged
@@ -2290,7 +2677,19 @@ MonoBehaviour:
   canDrag: 1
   onDragStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8050949}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDragEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -2300,6 +2699,7 @@ MonoBehaviour:
   onDropFailed:
     m_PersistentCalls:
       m_Calls: []
+  smoothFactor: 0.9
 --- !u!225 &689563642
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2350,6 +2750,158 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 689563639}
   m_CullTransparentMesh: 1
+--- !u!114 &689563645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689563639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: UI
+  key: Pop
+--- !u!1001 &691852783
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 406657097}
+    m_Modifications:
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7530098856541371609, guid: 0e2b1a0f413066fbc886a9738c65396d,
+        type: 3}
+      propertyPath: m_Name
+      value: Feedback
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0e2b1a0f413066fbc886a9738c65396d, type: 3}
+--- !u!224 &691852784 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1544256790496141476, guid: 0e2b1a0f413066fbc886a9738c65396d,
+    type: 3}
+  m_PrefabInstance: {fileID: 691852783}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &691852785 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3485061031995715300, guid: 0e2b1a0f413066fbc886a9738c65396d,
+    type: 3}
+  m_PrefabInstance: {fileID: 691852783}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f27705b74411bfe6b06ee5d8d5e70fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &720434449
 GameObject:
   m_ObjectHideFlags: 0
@@ -2363,6 +2915,7 @@ GameObject:
   - component: {fileID: 720434453}
   - component: {fileID: 720434452}
   - component: {fileID: 720434451}
+  - component: {fileID: 720434455}
   m_Layer: 5
   m_Name: Book
   m_TagString: Untagged
@@ -2407,7 +2960,19 @@ MonoBehaviour:
   canDrag: 1
   onDragStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8050949}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDragEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -2417,6 +2982,7 @@ MonoBehaviour:
   onDropFailed:
     m_PersistentCalls:
       m_Calls: []
+  smoothFactor: 0.9
 --- !u!225 &720434452
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2467,6 +3033,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 720434449}
   m_CullTransparentMesh: 1
+--- !u!114 &720434455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720434449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: UI
+  key: Pop
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2529,6 +3111,7 @@ GameObject:
   - component: {fileID: 858864429}
   - component: {fileID: 858864428}
   - component: {fileID: 858864427}
+  - component: {fileID: 858864431}
   m_Layer: 5
   m_Name: Ruler
   m_TagString: Untagged
@@ -2573,7 +3156,19 @@ MonoBehaviour:
   canDrag: 1
   onDragStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8050949}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDragEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -2583,6 +3178,7 @@ MonoBehaviour:
   onDropFailed:
     m_PersistentCalls:
       m_Calls: []
+  smoothFactor: 0.9
 --- !u!225 &858864428
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2633,6 +3229,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858864425}
   m_CullTransparentMesh: 1
+--- !u!114 &858864431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858864425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: UI
+  key: Pop
 --- !u!1 &894355063
 GameObject:
   m_ObjectHideFlags: 0
@@ -2742,10 +3354,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 594407262}
-        m_TargetAssemblyTypeName: Slafurry.Utils.UI.UIFade, Assembly-CSharp
-        m_MethodName: FadeIn
-        m_Mode: 1
+      - m_Target: {fileID: 368517844}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2767,6 +3379,7 @@ GameObject:
   - component: {fileID: 1039460564}
   - component: {fileID: 1039460563}
   - component: {fileID: 1039460562}
+  - component: {fileID: 1039460566}
   m_Layer: 5
   m_Name: Drawing Pen
   m_TagString: Untagged
@@ -2811,7 +3424,19 @@ MonoBehaviour:
   canDrag: 1
   onDragStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8050949}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDragEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -2821,6 +3446,7 @@ MonoBehaviour:
   onDropFailed:
     m_PersistentCalls:
       m_Calls: []
+  smoothFactor: 0.9
 --- !u!225 &1039460563
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2871,6 +3497,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1039460560}
   m_CullTransparentMesh: 1
+--- !u!114 &1039460566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039460560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: UI
+  key: Pop
 --- !u!1 &1092819394
 GameObject:
   m_ObjectHideFlags: 0
@@ -2884,6 +3526,7 @@ GameObject:
   - component: {fileID: 1092819398}
   - component: {fileID: 1092819397}
   - component: {fileID: 1092819396}
+  - component: {fileID: 1092819400}
   m_Layer: 5
   m_Name: Tupperware
   m_TagString: Untagged
@@ -2928,7 +3571,19 @@ MonoBehaviour:
   canDrag: 1
   onDragStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8050949}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDragEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -2938,6 +3593,7 @@ MonoBehaviour:
   onDropFailed:
     m_PersistentCalls:
       m_Calls: []
+  smoothFactor: 0.9
 --- !u!225 &1092819397
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2988,6 +3644,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092819394}
   m_CullTransparentMesh: 1
+--- !u!114 &1092819400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092819394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: UI
+  key: Pop
 --- !u!1 &1123200371
 GameObject:
   m_ObjectHideFlags: 0
@@ -3142,6 +3814,7 @@ GameObject:
   - component: {fileID: 1203019358}
   - component: {fileID: 1203019357}
   - component: {fileID: 1203019356}
+  - component: {fileID: 1203019360}
   m_Layer: 5
   m_Name: Doll
   m_TagString: Untagged
@@ -3186,7 +3859,19 @@ MonoBehaviour:
   canDrag: 1
   onDragStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8050949}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDragEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -3196,6 +3881,7 @@ MonoBehaviour:
   onDropFailed:
     m_PersistentCalls:
       m_Calls: []
+  smoothFactor: 0.9
 --- !u!225 &1203019357
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3246,6 +3932,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203019354}
   m_CullTransparentMesh: 1
+--- !u!114 &1203019360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203019354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: UI
+  key: Pop
 --- !u!1 &1248663727
 GameObject:
   m_ObjectHideFlags: 0
@@ -3259,6 +3961,7 @@ GameObject:
   - component: {fileID: 1248663731}
   - component: {fileID: 1248663730}
   - component: {fileID: 1248663729}
+  - component: {fileID: 1248663733}
   m_Layer: 5
   m_Name: Srut
   m_TagString: Untagged
@@ -3303,7 +4006,19 @@ MonoBehaviour:
   canDrag: 1
   onDragStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8050949}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDragEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -3313,6 +4028,7 @@ MonoBehaviour:
   onDropFailed:
     m_PersistentCalls:
       m_Calls: []
+  smoothFactor: 0.9
 --- !u!225 &1248663730
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3363,6 +4079,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248663727}
   m_CullTransparentMesh: 1
+--- !u!114 &1248663733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248663727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: UI
+  key: Pop
 --- !u!1 &1313741084
 GameObject:
   m_ObjectHideFlags: 0
@@ -3376,6 +4108,7 @@ GameObject:
   - component: {fileID: 1313741088}
   - component: {fileID: 1313741087}
   - component: {fileID: 1313741086}
+  - component: {fileID: 1313741090}
   m_Layer: 5
   m_Name: Broom
   m_TagString: Untagged
@@ -3420,7 +4153,19 @@ MonoBehaviour:
   canDrag: 1
   onDragStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8050949}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDragEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -3430,6 +4175,7 @@ MonoBehaviour:
   onDropFailed:
     m_PersistentCalls:
       m_Calls: []
+  smoothFactor: 0.9
 --- !u!225 &1313741087
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3480,6 +4226,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313741084}
   m_CullTransparentMesh: 1
+--- !u!114 &1313741090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313741084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: UI
+  key: Pop
 --- !u!1 &1374467857
 GameObject:
   m_ObjectHideFlags: 0
@@ -3634,6 +4396,7 @@ GameObject:
   - component: {fileID: 1419817114}
   - component: {fileID: 1419817113}
   - component: {fileID: 1419817112}
+  - component: {fileID: 1419817116}
   m_Layer: 5
   m_Name: Eraser
   m_TagString: Untagged
@@ -3678,7 +4441,19 @@ MonoBehaviour:
   canDrag: 1
   onDragStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8050949}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDragEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -3688,6 +4463,7 @@ MonoBehaviour:
   onDropFailed:
     m_PersistentCalls:
       m_Calls: []
+  smoothFactor: 0.9
 --- !u!225 &1419817113
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3738,6 +4514,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1419817110}
   m_CullTransparentMesh: 1
+--- !u!114 &1419817116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419817110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: UI
+  key: Pop
 --- !u!1 &1537399852
 GameObject:
   m_ObjectHideFlags: 0
@@ -3786,6 +4578,7 @@ GameObject:
   - component: {fileID: 1605308294}
   - component: {fileID: 1605308293}
   - component: {fileID: 1605308292}
+  - component: {fileID: 1605308296}
   m_Layer: 5
   m_Name: PenBox
   m_TagString: Untagged
@@ -3830,7 +4623,19 @@ MonoBehaviour:
   canDrag: 1
   onDragStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8050949}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDragEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -3840,6 +4645,7 @@ MonoBehaviour:
   onDropFailed:
     m_PersistentCalls:
       m_Calls: []
+  smoothFactor: 0.9
 --- !u!225 &1605308293
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3890,6 +4696,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1605308290}
   m_CullTransparentMesh: 1
+--- !u!114 &1605308296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605308290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: UI
+  key: Pop
 --- !u!1 &1689263130
 GameObject:
   m_ObjectHideFlags: 0
@@ -4086,6 +4908,7 @@ GameObject:
   - component: {fileID: 1726814983}
   - component: {fileID: 1726814988}
   - component: {fileID: 1726814987}
+  - component: {fileID: 1726814989}
   m_Layer: 5
   m_Name: DropZone
   m_TagString: Untagged
@@ -4177,9 +5000,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1726814989}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onWrongDrop:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 691852785}
+        m_TargetAssemblyTypeName: FeedbackManager, Assembly-CSharp
+        m_MethodName: ShowWrong
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDropRejected:
     m_PersistentCalls:
       m_Calls: []
@@ -4298,6 +5145,22 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1726814989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726814981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: Activity
+  key: MenyusunBarang
 --- !u!1 &1746589291
 GameObject:
   m_ObjectHideFlags: 0
@@ -4491,6 +5354,7 @@ GameObject:
   - component: {fileID: 1775548419}
   - component: {fileID: 1775548418}
   - component: {fileID: 1775548417}
+  - component: {fileID: 1775548421}
   m_Layer: 5
   m_Name: Lunchbox
   m_TagString: Untagged
@@ -4535,7 +5399,19 @@ MonoBehaviour:
   canDrag: 1
   onDragStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8050949}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDragEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -4545,6 +5421,7 @@ MonoBehaviour:
   onDropFailed:
     m_PersistentCalls:
       m_Calls: []
+  smoothFactor: 0.9
 --- !u!225 &1775548418
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4595,6 +5472,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1775548415}
   m_CullTransparentMesh: 1
+--- !u!114 &1775548421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775548415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: UI
+  key: Pop
 --- !u!1 &1849266421
 GameObject:
   m_ObjectHideFlags: 0

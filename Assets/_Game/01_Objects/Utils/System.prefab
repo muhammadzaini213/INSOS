@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6098e7656afbc8e0966bc109d89b759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfxData: {fileID: 0}
+  sfxData: {fileID: 11400000, guid: bcdb1ebb3282a6224b7d519d25283460, type: 2}
   sfxMixerGroup: {fileID: -7080032660504490588, guid: 81b19f74eedae61af982ca23d1c51ecc,
     type: 2}
 --- !u!1 &8753482436864795837
@@ -291,6 +291,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ace2740ad9c01b3e8dfd2889fe2e10f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicData: {fileID: 0}
+  musicData: {fileID: 11400000, guid: abcaaff76dd57710094fbfdd90a50868, type: 2}
   musicSource: {fileID: 6381803026351610239}
-  sceneTracks: []

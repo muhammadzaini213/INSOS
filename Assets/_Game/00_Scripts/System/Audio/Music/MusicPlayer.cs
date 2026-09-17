@@ -1,17 +1,17 @@
-using UnityEngine;
 using System.Collections;
 using Slafurry.System.Scene;
-using Slafurry.Core.Interface;
+using UnityEngine;
 
 namespace Slafurry.System.Audio
 {
-    public class MusicPlayer : MonoBehaviour, IInitializable
+    public class MusicPlayer : MonoBehaviour
     {
-        [SerializeField] private MusicData musicData;
-        [SerializeField] private AudioSource musicSource;
+        [SerializeField]
+        private MusicData musicData;
 
-        [Header("Scene Music")]
-        [SerializeField] private SceneTrack[] sceneTracks;
+        [SerializeField]
+        private AudioSource musicSource;
+
         private Coroutine _currentFadeCoroutine;
 
         public int Priority => 1;
@@ -19,43 +19,57 @@ namespace Slafurry.System.Audio
         void OnDisable()
         {
             if (SceneLoader.Instance != null)
-                SceneLoader.Instance.OnSceneLoadCompleted -= HandleSceneLoaded;
+                SceneLoader.Instance.OnSceneLoadCompleted -= OnSceneLoaded;
         }
 
-        private void HandleSceneLoaded(string sceneName)
+        public void Subscribe()
         {
-            string trackToPlay = null;
+            if (SceneLoader.Instance != null)
+                SceneLoader.Instance.OnSceneLoadCompleted += OnSceneLoaded;
+        }
 
-            if (sceneTracks != null)
-            {
-                foreach (var st in sceneTracks)
-                {
-                    if (!string.IsNullOrEmpty(st.sceneName) && st.sceneName == sceneName)
-                    {
-                        trackToPlay = st.trackName;
-                        break;
-                    }
-                }
-            }
+        private void OnSceneLoaded(string sceneName)
+        {
+            PlaySceneMusic(sceneName);
+        }
 
-            if (string.IsNullOrEmpty(trackToPlay))
-                trackToPlay = sceneName;
+        /// <summary>
+        /// Play musik berdasarkan scene name (pake mapping dari MusicData).
+        /// </summary>
+        public void PlaySceneMusic(string sceneName = null)
+        {
+            if (sceneName == null)
+                sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
-            if (musicData != null && musicData.GetClipFromName(trackToPlay) != null)
-                PlayMusic(trackToPlay);
+            string trackName = musicData != null ? musicData.GetTrackName(sceneName) : sceneName;
+
+            Debug.Log($"[MusicPlayer] Scene: '{sceneName}' → Track: '{trackName}'");
+
+            if (musicData != null && musicData.GetClipFromName(trackName) != null)
+                PlayMusic(trackName);
+            else
+                Debug.LogWarning($"[MusicPlayer] No clip for '{trackName}'");
         }
 
         public void PlayMusic(string trackName, float fadeDuration = 0.5f)
         {
-            if (musicData == null || musicSource == null) return;
+            if (musicData == null || musicSource == null)
+                return;
 
             MusicTrack track = musicData.GetTrack(trackName);
-            if (track.clip == null) return;
+            if (track.clip == null)
+                return;
+
+            // Sama dengan yang sedang main — skip
+            if (musicSource.clip == track.clip && musicSource.isPlaying)
+                return;
 
             if (_currentFadeCoroutine != null)
                 StopCoroutine(_currentFadeCoroutine);
 
-            _currentFadeCoroutine = StartCoroutine(AnimateMusicCrossfade(track.clip, track.volume, fadeDuration));
+            _currentFadeCoroutine = StartCoroutine(
+                AnimateMusicCrossfade(track.clip, track.volume, fadeDuration)
+            );
         }
 
         public void StopMusic(float fadeDuration = 0.5f)
@@ -97,7 +111,11 @@ namespace Slafurry.System.Audio
             _currentFadeCoroutine = null;
         }
 
-        private IEnumerator AnimateMusicCrossfade(AudioClip nextTrack, float targetVolume, float fadeDuration = 0.5f)
+        private IEnumerator AnimateMusicCrossfade(
+            AudioClip nextTrack,
+            float targetVolume,
+            float fadeDuration = 0.5f
+        )
         {
             float startVolume = musicSource.volume;
             float percent = 0;
@@ -121,16 +139,6 @@ namespace Slafurry.System.Audio
 
             musicSource.volume = targetVolume;
             _currentFadeCoroutine = null;
-        }
-
-        public IEnumerator Initialize()
-        {
-            yield return null;
-        }
-
-        public void PostInitialize()
-        {
-            SceneLoader.Instance.OnSceneLoadCompleted += HandleSceneLoaded;
         }
     }
 }

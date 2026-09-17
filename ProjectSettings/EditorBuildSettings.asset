@@ -18,8 +18,17 @@ EditorBuildSettings:
     path: Assets/_Game/04_Scenes/Game/Section 1/01_Section 1.unity
     guid: dc300dc04dd61ebbe8c1663cce54c44e
   - enabled: 1
-    path: Assets/_Game/04_Scenes/Game/Section 1/02_Section 1.unity
+    path: Assets/_Game/04_Scenes/Game/Section 1/02_Section 1_1.unity
     guid: 925b14dfc376a702d8109e03950da074
+  - enabled: 1
+    path: Assets/_Game/04_Scenes/Game/Section 1/02_Section 1_3.unity
+    guid: 57849a0d1d26b8d1d9202570b0d731fb
+  - enabled: 1
+    path: Assets/_Game/04_Scenes/Game/Section 1/02_Section 1_2.unity
+    guid: 1925f05c94b00b5f986674f4f55404c6
+  - enabled: 1
+    path: Assets/_Game/04_Scenes/Game/Section 1/02_Section 1_4.unity
+    guid: 037da496b57c1458b853b2b188382969
   - enabled: 1
     path: Assets/_Game/04_Scenes/Game/Section 1/03_Section 1.unity
     guid: df30331f2a33a7b618ed8435bb39eba3
@@ -66,33 +75,9 @@ EditorBuildSettings:
     path: Assets/_Game/04_Scenes/Game/Section 1/17_Section 1.unity
     guid: f3f7987f79a09e6e2b7baf81f5c55990
   - enabled: 1
-    path: Assets/_Game/04_Scenes/Game/Section 3/01_Section 3.unity
-    guid: 18a6981d97598f14f977b240756bab26
+    path: Assets/_Game/04_Scenes/Game/Section 2/01_Section 2.unity
+    guid: 999e51db6a34e7b70b619380a35efbe9
   - enabled: 1
-    path: Assets/_Game/04_Scenes/Game/Section 3/02_Section 3.unity
-    guid: 875418ae72e1f6a40a101b93daa35177
-  - enabled: 1
-    path: Assets/_Game/04_Scenes/Game/Section 3/03_Section 3.unity
-    guid: 704c6d67eefe96847bf0ece8fddcb55b
-  - enabled: 1
-    path: Assets/_Game/04_Scenes/Game/Section 3/04_Section 3.unity
-    guid: ab654ea3bd0117a408e8327421d9ba7f
-  - enabled: 1
-    path: Assets/_Game/04_Scenes/Game/Section 3/05_Section 3.unity
-    guid: b4792a47087ecdc4eab28488a3a7458d
-  - enabled: 1
-    path: Assets/_Game/04_Scenes/Game/Section 3/06_Section 3.unity
-    guid: 607c95af9b7d31b44be9d79478145bcb
-  - enabled: 1
-    path: Assets/_Game/04_Scenes/Game/Section 3/07_Section 3.unity
-    guid: 10c09075b12419a4e99e3fdc1d54b57d
-  - enabled: 1
-    path: Assets/_Game/04_Scenes/Game/Section 3/08_Section 3.unity
-    guid: 1b7b5657480fb1a479843cbcfbf0ff91
-  - enabled: 1
-    path: Assets/_Game/04_Scenes/Game/Section 3/09_Section 3.unity
-    guid: a91cc5bf3dd50d741add1446b7c89913
-  - enabled: 1
-    path: Assets/_Game/04_Scenes/Game/Section 3/10_Section 3.unity
-    guid: 7c2d4c96b47493e4fa7d6206e0ae94f5
+    path: Assets/_Game/04_Scenes/Game/Section 2/02_Section 2.unity
+    guid: 37e00be48b5530f01b46609119c80204
   m_configObjects: {}

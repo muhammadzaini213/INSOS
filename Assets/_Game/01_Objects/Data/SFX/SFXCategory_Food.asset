@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b5b3454719b816593df0cb8c16f82a, type: 3}
+  m_Name: SFXCategory_Food
+  m_EditorClassIdentifier: 
+  categoryName: Food
+  effects:
+  - groupID: Gigit
+    clips:
+    - {fileID: 8300000, guid: 18e703af5572a721b99025bb946bb020, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+  - groupID: Saus
+    clips:
+    - {fileID: 8300000, guid: 66902057827e987e4b65ef369cc4747a, type: 3}
+    - {fileID: 8300000, guid: e782b62ccb7237a60b19fabf8cba3166, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+  - groupID: Minum
+    clips:
+    - {fileID: 8300000, guid: b1d8b6ebaf2c04252ab6afbbf8078e43, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+  - groupID: Teko
+    clips:
+    - {fileID: 8300000, guid: a5893727b9557a835a705f541666ca8e, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+  poolSize: 8
