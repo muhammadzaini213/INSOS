@@ -127,6 +127,7 @@ namespace Slafurry.System.Audio
             }
 
             musicSource.clip = nextTrack;
+            musicSource.loop = true;
             musicSource.Play();
 
             percent = 0;

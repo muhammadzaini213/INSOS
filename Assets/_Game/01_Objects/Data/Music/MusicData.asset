@@ -36,3 +36,5 @@ MonoBehaviour:
     trackName: MorningRoutineMusic
   - sceneName: Section 2
     trackName: CleaningMusic
+  - sceneName: Section 3
+    trackName: CardPlayMusic
