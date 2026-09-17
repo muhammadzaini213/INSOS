@@ -50,14 +50,14 @@ namespace Slafurry.Game
         {
             if (CheckpointManager.Instance == null)
             {
-                UnityEngine.UnityEngine.UnityEngine.Debug.LogError("[SectionSaveDataHelper] CheckpointManager not initialized!");
+                UnityEngine.Debug.LogError("[SectionSaveDataHelper] CheckpointManager not initialized!");
                 return;
             }
             
             _saveData = CheckpointManager.Instance.GetSectionData(section);
             
             if (showDebugLogs)
-                UnityEngine.UnityEngine.Debug.Log($"[SectionSaveDataHelper] Loaded save data for Section {section}");
+                UnityEngine.Debug.Log($"[SectionSaveDataHelper] Loaded save data for Section {section}");
         }
         
         /// <summary>
@@ -67,13 +67,13 @@ namespace Slafurry.Game
         {
             if (CheckpointManager.Instance == null)
             {
-                UnityEngine.UnityEngine.Debug.LogError("[SectionSaveDataHelper] CheckpointManager not initialized!");
+                UnityEngine.Debug.LogError("[SectionSaveDataHelper] CheckpointManager not initialized!");
                 return;
             }
             
             if (_saveData == null)
             {
-                UnityEngine.UnityEngine.Debug.LogWarning("[SectionSaveDataHelper] No data to save!");
+                UnityEngine.Debug.LogWarning("[SectionSaveDataHelper] No data to save!");
                 return;
             }
             
@@ -101,7 +101,7 @@ namespace Slafurry.Game
         {
             if (_saveData == null)
             {
-                UnityEngine.UnityEngine.Debug.LogWarning("[SectionSaveDataHelper] Save data not loaded!");
+                UnityEngine.Debug.LogWarning("[SectionSaveDataHelper] Save data not loaded!");
                 return;
             }
             
@@ -134,7 +134,7 @@ namespace Slafurry.Game
         {
             if (_saveData == null)
             {
-                UnityEngine.UnityEngine.Debug.LogWarning("[SectionSaveDataHelper] Save data not loaded!");
+                UnityEngine.Debug.LogWarning("[SectionSaveDataHelper] Save data not loaded!");
                 return;
             }
             
@@ -167,7 +167,7 @@ namespace Slafurry.Game
         {
             if (_saveData == null)
             {
-                UnityEngine.UnityEngine.Debug.LogWarning("[SectionSaveDataHelper] Save data not loaded!");
+                UnityEngine.Debug.LogWarning("[SectionSaveDataHelper] Save data not loaded!");
                 return;
             }
             
@@ -198,7 +198,7 @@ namespace Slafurry.Game
         {
             if (_saveData == null)
             {
-                UnityEngine.UnityEngine.Debug.LogWarning("[SectionSaveDataHelper] Save data not loaded!");
+                UnityEngine.Debug.LogWarning("[SectionSaveDataHelper] Save data not loaded!");
                 return;
             }
             
@@ -233,7 +233,7 @@ namespace Slafurry.Game
         {
             if (_saveData == null)
             {
-                UnityEngine.UnityEngine.Debug.LogWarning("[SectionSaveDataHelper] Save data not loaded!");
+                UnityEngine.Debug.LogWarning("[SectionSaveDataHelper] Save data not loaded!");
                 return;
             }
             
@@ -263,7 +263,7 @@ namespace Slafurry.Game
         {
             if (_saveData == null)
             {
-                UnityEngine.UnityEngine.Debug.LogWarning("[SectionSaveDataHelper] Save data not loaded!");
+                UnityEngine.Debug.LogWarning("[SectionSaveDataHelper] Save data not loaded!");
                 return;
             }
             
