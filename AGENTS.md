@@ -49,8 +49,7 @@ Assets/
 │   ├── 00_Scripts/
 │   │   ├── Core/          # Abstract bases, interfaces (Singleton, Manager, IInitializable, IResettable)
 │   │   ├── System/        # Global systems (Audio, Save, Loading, Scene, Pause, InputHub, Localization, PlayerData)
-│   │   ├── Game/          # Gameplay (Triggers, Dialog, Character)
-│   │   │   └── _Old/      # Deprecated scripts (legacy OnMouseDown/OnMouseDrag)
+│   │   ├── Game/          # Gameplay (Triggers, Dialog, Character, TutorialSystem)
 │   │   ├── UI/            # UI components (Menus, HUD, Transitions)
 │   │   └── Utils/         # Helpers (UI animations, GameFeel effects)
 │   ├── 01_Objects/        # Prefabs
@@ -59,26 +58,24 @@ Assets/
 │   ├── 04_Scenes/         # See Scene Flow below
 │   └── 05_Settings/       # URP, ScriptableObjects
 ├── Editor/                # Custom editor tools (GameAssetCreator, PlayerDataEditor, CharacterSpriteEditor, BuildScript)
-├── Resources/             # Runtime-loaded assets (Congratulations animation frames)
-└── _Vendor/               # Third-party (NavMeshComponents, TextMeshPro)
+└── _Vendor/               # Third-party (TextMeshPro)
 ```
 
 ### Scene Flow
 **Build order**: `01_StartMenu` → `02_ChooseGenderMenu` → `03_ChooseActivityMenu` → Section 1
 
-**Section 1** has 17 scenes (cutscenes, gameplay rooms, mirror, toothbrushing, kitchen, sandwich, etc.). **Section 2** has 3 scenes. **Section 3** directory exists but is empty.
+**Section 1** has 20 scenes (cutscenes, gameplay rooms, mirror, toothbrushing, kitchen, sandwich, etc.). **Section 2** has 4 scenes (including `TutorialTest`). **Section 3** has 10 scenes.
 
 **Menu scenes**: `01_StartMenu`, `02_ChooseGenderMenu`, `03_ChooseActivityMenu` (in `04_Scenes/Menu/`)
 
 ### Key Packages
 - Input System (`com.unity.inputsystem`) — not legacy Input
 - URP 14.x (2D renderer)
-- `com.unity.ai.navigation` (1.1.7) + vendored NavMeshComponents in `_Vendor/`
+- `com.unity.ai.navigation` (1.1.7)
 - Newtonsoft JSON (save system)
 - TextMeshPro (UI text)
 - Cinemachine (2.10.6) — camera
 - Timeline (1.7.7) — cutscenes
-- Recorder (4.0.3) — video/image recording
 
 ## Code Conventions
 - **Namespace**: `Slafurry.{System/Subsystem}` (e.g., `Slafurry.System.Audio`, `Slafurry.Core.Abstract`). **Warning**: Many files (especially triggers, dialog, menus, old scripts) use global namespace — this is inconsistent
@@ -88,6 +85,59 @@ Assets/
 - **Editor tools**: Use `[GameAssetCreator("Category", "Name")]` attribute on ScriptableObjects to register in the custom asset creator window (`Slafurry > Game Data`)
 - **PlayerData**: Static class in `Slafurry.System.Player` — stores gender selection (Boy/Girl) in PlayerPrefs, fires `OnGenderChanged`
 - **Dialog**: `Dialog` struct + `DialogBucket` ScriptableObject (global namespace), displayed by `DialogHUD` with typing effect
+- **UI Effects**: Most expose `useUnscaledTime` (default `true`) so they work during pause
+- **UI Position Capture**: `UIBubble`, `UIFloat`, `UISlide` use `Canvas.willRenderCanvases` callback to capture initial position after layout — don't read `anchoredPosition` in `Awake()` or `OnEnable()` for LayoutGroup-managed elements
+- **Dual Event Pattern**: Newer scripts expose both C# `event Action` and `[SerializeField] UnityEvent` for the same trigger
+
+## Systems Reference
+
+### Audio System (`Slafurry.System.Audio`)
+- `AudioSystem` owns `MusicPlayer` and `SFXPlayer` as serialized sub-components
+- `MusicPlayer`: crossfade, scene-based music mapping via `MusicData` ScriptableObject, auto-switches on scene load
+- `SFXPlayer`: per-category object pooling (`CategoryPool`), supports 2D/3D, max simultaneous, random clip selection
+- `SFXData` / `SFXCategory` ScriptableObjects define SFX groups
+
+### Tutorial System (`Slafurry.Game.TutorialSystem`)
+- `TutorialManager`: step sequencer with `NextStep()`, `Restart()`, `SetStep()`
+- `ITutorialStep` interface: `Play()` / `Stop()`
+- `TutorialClickUI`: animated click-hint (pop/fade loop)
+- `TutorialDragUI`: animated drag-hint (point A to B path)
+- `IdleWatcher`: detects inactivity via Input System, fires `OnIdle`/`OnActive`
+
+### Drag and Drop System (global namespace)
+- `DragItemTrigger`: extends `BaseTrigger`, implements `IBeginDragHandler`/`IDragHandler`/`IEndDragHandler`
+- `DropZoneTrigger`: extends `BaseTrigger`, implements `IDropHandler`/`IPointerEnterHandler`/`IPointerExitHandler`
+
+### Character System (`Slafurry.Game.Character`)
+- `CharacterSprite`: UI Image-based gender-aware sprite swapper
+- `CharacterSpriteRenderer`: SpriteRenderer-based equivalent for 2D world-space
+- Both subscribe to `PlayerData.OnGenderChanged`
+
+### Utils/UI Toolkit (17 components)
+| Script | Purpose |
+|--------|---------|
+| `UIAnim` | Sprite-sheet frame animation from Resources |
+| `UIBlink` | CanvasGroup alpha blink |
+| `UIBubble` | Float + sway + tilt sinusoidal animation |
+| `UIButtonSFX` | Auto-plays click SFX on Button |
+| `UICounter` | Animated number counter |
+| `UIFade` | CanvasGroup fade in/out |
+| `UIFloat` | Simple vertical float animation |
+| `UIImageZoom` | Gradual image scale zoom-in |
+| `UIPop` | One-shot pop-in/out with EaseOutBack |
+| `UIRotator` | Continuous RectTransform Z-rotation |
+| `UISafeArea` | Adapts to `Screen.safeArea` for notch |
+| `UIScalePunch` | One-shot scale punch effect |
+| `UISfxParticle` | Jump-arc + fade particle on UI Image |
+| `UIShake` | Position shake with damping |
+| `UISlide` | Edge-slide in/out |
+| `UITransition` | Scene transition fade |
+| `FeedbackManager` | Correct/wrong feedback popups with pooling and SFX |
+
+### Other Scripts
+- `VerticalScrollView` (`Slafurry.Game.UI`): page-based scroll view with up/down buttons
+- `LocalizedText` (`Slafurry.UI.Generic`): TMP_Text wrapper that auto-refreshes on language change
+- `WebLockOrientation` (`Slafurry.Utils`): forces landscape fullscreen on first touch for WebGL mobile
 
 ## Git Workflow
 - Branch from `main`
