@@ -1053,7 +1053,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playLimit: 0
   unlimited: 1
-  sceneName: 01_Section 1
+  sceneName: 01_Section 2
 --- !u!114 &661636376
 MonoBehaviour:
   m_ObjectHideFlags: 0
