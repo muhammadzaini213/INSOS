@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 025576763f63d004093c576f5c7fe346
+guid: 844050c9151bcb841a85f053d77bf5cf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -37,8 +37,8 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
   nPOTScale: 0
   lightmap: 0
@@ -95,27 +95,27 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 12
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 50
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -123,34 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: otw cuci muka__0
-      rect:
-        serializedVersion: 2
-        x: 698
-        y: 1598
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a830b542968bf78a0ab6079f1438e2de
-      internalID: 1217028290
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: otw cuci muka__1
+      name: Girl _ berkumur, bg removed_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 799
-        width: 22
-        height: 11
+        y: 0
+        width: 456
+        height: 528
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3a85911694cc744298892e3d903487a
-      internalID: 532773760
+      spriteID: 6052aac56184ede02bb93a677b1386ac
+      internalID: 692752373
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: otw cuci muka__2
+      name: Girl _ berkumur, bg removed_1
       rect:
         serializedVersion: 2
-        x: 11
-        y: 303
-        width: 1069
-        height: 1283
+        x: 462
+        y: 300
+        width: 6
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2328dfa1f8da708b58fc81ac30e0e9c4
-      internalID: -263800457
+      spriteID: 9efb7e7cbf1c58b32b5b7915ef3d9fad
+      internalID: -1153981974
       vertices: []
       indices: 
       edges: []
@@ -188,7 +167,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: c1575c585c8606158a79ebc82c3c962f
     internalID: 0
     vertices: []
     indices: 
@@ -196,9 +175,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      otw cuci muka__0: 1217028290
-      otw cuci muka__1: 532773760
-      otw cuci muka__2: -263800457
+      Girl _ berkumur, bg removed_0: 692752373
+      Girl _ berkumur, bg removed_1: -1153981974
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

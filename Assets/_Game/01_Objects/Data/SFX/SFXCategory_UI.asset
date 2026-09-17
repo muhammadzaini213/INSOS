@@ -19,4 +19,9 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 07c62503ecc3cd73f9dbe285a1bef779, type: 3}
     volume: 1.05
     maxSimultaneous: 3
+  - groupID: Pop
+    clips:
+    - {fileID: 8300000, guid: 9224fb72778f00cdf91478fea4706380, type: 3}
+    volume: 1.05
+    maxSimultaneous: 3
   poolSize: 8
