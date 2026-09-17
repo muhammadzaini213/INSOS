@@ -25,6 +25,7 @@ namespace Slafurry.System.Checkpoint
         // === CONSTANTS ===
         
         private const string CHECKPOINT_PREFIX = "Checkpoint_Section";
+        private const string SAVE_DATA_PREFIX = "SectionSaveData_";
         private const string LAST_SECTION_KEY = "LastPlayedSection";
         
         // Default start scenes for each section
@@ -35,16 +36,23 @@ namespace Slafurry.System.Checkpoint
             { 3, "01_Section 3" }
         };
         
+        // In-memory cache for section save data
+        private readonly Dictionary<int, SectionSaveData> _sectionDataCache = new();
+        
         // === EVENTS (Dual Event Pattern) ===
         
         // C# Events
         public event Action<int, string> OnCheckpointSaved;  // (section, sceneName)
         public event Action<int> OnCheckpointReset;          // (section)
+        public event Action<int> OnSectionDataSaved;         // (section) - fired when section save data is saved
+        public event Action<int> OnSectionDataLoaded;        // (section) - fired when section save data is loaded
         
         // UnityEvents (Inspector-assignable)
         [Header("UnityEvents (Optional)")]
         [SerializeField] private UnityEvent<int, string> onCheckpointSavedUnityEvent;
         [SerializeField] private UnityEvent<int> onCheckpointResetUnityEvent;
+        [SerializeField] private UnityEvent<int> onSectionDataSavedUnityEvent;
+        [SerializeField] private UnityEvent<int> onSectionDataLoadedUnityEvent;
         
         // === INITIALIZATION ===
         
@@ -340,11 +348,141 @@ namespace Slafurry.System.Checkpoint
             return defaultScene;
         }
         
+        // === SECTION SAVE DATA API ===
+        
+        /// <summary>
+        /// Get section save data. Creates new data if none exists.
+        /// Data is cached in memory for fast access.
+        /// </summary>
+        /// <param name="section">Section number (1, 2, or 3)</param>
+        /// <returns>SectionSaveData for the section</returns>
+        public SectionSaveData GetSectionData(int section)
+        {
+            if (section < 1 || section > 3)
+            {
+                Debug.LogError($"[CheckpointManager] Invalid section: {section}");
+                return null;
+            }
+            
+            // Return cached data if available
+            if (_sectionDataCache.ContainsKey(section))
+            {
+                return _sectionDataCache[section];
+            }
+            
+            // Try to load from PlayerPrefs
+            string key = GetSaveDataKey(section);
+            if (PlayerPrefs.HasKey(key))
+            {
+                string json = PlayerPrefs.GetString(key);
+                try
+                {
+                    SectionSaveData data = JsonUtility.FromJson<SectionSaveData>(json);
+                    _sectionDataCache[section] = data;
+                    Debug.Log($"[CheckpointManager] Section {section} save data loaded from PlayerPrefs");
+                    OnSectionDataLoaded?.Invoke(section);
+                    onSectionDataLoadedUnityEvent?.Invoke(section);
+                    return data;
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"[CheckpointManager] Failed to parse section {section} save data: {e.Message}");
+                }
+            }
+            
+            // Create new save data
+            SectionSaveData newData = new SectionSaveData(section);
+            _sectionDataCache[section] = newData;
+            Debug.Log($"[CheckpointManager] Created new save data for section {section}");
+            return newData;
+        }
+        
+        /// <summary>
+        /// Save section data to PlayerPrefs.
+        /// Call this after modifying section data.
+        /// </summary>
+        /// <param name="section">Section number (1, 2, or 3)</param>
+        public void SaveSectionData(int section)
+        {
+            if (section < 1 || section > 3)
+            {
+                Debug.LogError($"[CheckpointManager] Invalid section: {section}");
+                return;
+            }
+            
+            if (!_sectionDataCache.ContainsKey(section))
+            {
+                Debug.LogWarning($"[CheckpointManager] No data to save for section {section}");
+                return;
+            }
+            
+            SectionSaveData data = _sectionDataCache[section];
+            data.lastPlayedTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            
+            string json = JsonUtility.ToJson(data);
+            string key = GetSaveDataKey(section);
+            PlayerPrefs.SetString(key, json);
+            PlayerPrefs.Save();
+            
+            Debug.Log($"[CheckpointManager] Section {section} save data saved to PlayerPrefs");
+            OnSectionDataSaved?.Invoke(section);
+            onSectionDataSavedUnityEvent?.Invoke(section);
+        }
+        
+        /// <summary>
+        /// Reset section save data (clears all progress, items, tasks, etc.).
+        /// Also clears the checkpoint for this section.
+        /// </summary>
+        /// <param name="section">Section number (1, 2, or 3)</param>
+        public void ResetSectionData(int section)
+        {
+            if (section < 1 || section > 3)
+            {
+                Debug.LogError($"[CheckpointManager] Invalid section: {section}");
+                return;
+            }
+            
+            // Remove from cache
+            if (_sectionDataCache.ContainsKey(section))
+            {
+                _sectionDataCache.Remove(section);
+            }
+            
+            // Remove from PlayerPrefs
+            string key = GetSaveDataKey(section);
+            if (PlayerPrefs.HasKey(key))
+            {
+                PlayerPrefs.DeleteKey(key);
+                PlayerPrefs.Save();
+            }
+            
+            // Also reset checkpoint
+            ResetSectionProgress(section);
+            
+            Debug.Log($"[CheckpointManager] Section {section} save data reset");
+        }
+        
+        /// <summary>
+        /// Check if section has save data.
+        /// </summary>
+        public bool HasSectionData(int section)
+        {
+            if (section < 1 || section > 3)
+                return false;
+            
+            return PlayerPrefs.HasKey(GetSaveDataKey(section));
+        }
+        
         // === PRIVATE HELPERS ===
         
         private string GetCheckpointKey(int section)
         {
             return $"{CHECKPOINT_PREFIX}{section}";
+        }
+        
+        private string GetSaveDataKey(int section)
+        {
+            return $"{SAVE_DATA_PREFIX}{section}";
         }
         
         // === DEBUG HELPERS ===
@@ -358,14 +496,26 @@ namespace Slafurry.System.Checkpoint
             
             for (int section = 1; section <= 3; section++)
             {
+                // Checkpoint info
                 CheckpointData data = LoadCheckpointProgress(section);
                 if (data != null)
                 {
-                    Debug.Log($"Section {section}: {data.sceneName} | Gender: {data.gender} | {data.GetTimestampText()}");
+                    Debug.Log($"Section {section} Checkpoint: {data.sceneName} | Gender: {data.gender} | {data.GetTimestampText()}");
                 }
                 else
                 {
-                    Debug.Log($"Section {section}: No checkpoint");
+                    Debug.Log($"Section {section} Checkpoint: No checkpoint");
+                }
+                
+                // Save data info
+                if (HasSectionData(section))
+                {
+                    SectionSaveData saveData = GetSectionData(section);
+                    Debug.Log($"Section {section} Save Data: {saveData.completedScenes.Count} scenes, {saveData.collectedItems.Count} items, {saveData.completedTasks.Count} tasks, {saveData.progressPercentage:F1}% complete");
+                }
+                else
+                {
+                    Debug.Log($"Section {section} Save Data: No save data");
                 }
             }
             

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Slafurry.System.Checkpoint
 {
@@ -43,6 +44,52 @@ namespace Slafurry.System.Checkpoint
                 return $"Last played: {(int)elapsed.TotalDays} days ago";
             
             return $"Last played: {savedTime:yyyy-MM-dd}";
+        }
+    }
+    
+    /// <summary>
+    /// Section-specific save data structure.
+    /// Each section has its own save data independent from checkpoints.
+    /// Use this to store gameplay state, collected items, completed tasks, etc.
+    /// </summary>
+    [Serializable]
+    public class SectionSaveData
+    {
+        public int section;                           // Section number (1, 2, or 3)
+        public bool isCompleted;                      // Has section been completed?
+        public float progressPercentage;              // 0-100% progress through section
+        public long lastPlayedTimestamp;              // Last time this section was played
+        
+        // Gameplay state
+        public List<string> completedScenes;          // Scenes completed in this section
+        public List<string> collectedItems;           // Items collected (e.g., "key", "coin")
+        public List<string> completedTasks;           // Tasks/objectives completed
+        public Dictionary<string, int> taskProgress;  // Task progress counters (e.g., "teeth_brushed": 3)
+        public Dictionary<string, bool> flags;        // Boolean flags (e.g., "tutorial_seen": true)
+        public Dictionary<string, string> customData; // Custom string data
+        
+        // Statistics
+        public int timesPlayed;                       // How many times section was started
+        public int deathCount;                        // Number of failures/retries
+        public int hintsUsed;                         // Tutorial hints used
+        
+        public SectionSaveData()
+        {
+            completedScenes = new List<string>();
+            collectedItems = new List<string>();
+            completedTasks = new List<string>();
+            taskProgress = new Dictionary<string, int>();
+            flags = new Dictionary<string, bool>();
+            customData = new Dictionary<string, string>();
+        }
+        
+        public SectionSaveData(int section) : this()
+        {
+            this.section = section;
+            this.isCompleted = false;
+            this.progressPercentage = 0f;
+            this.lastPlayedTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            this.timesPlayed = 1;
         }
     }
 }
