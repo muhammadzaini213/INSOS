@@ -45,7 +45,7 @@ namespace Slafurry.Game.Checkpoint
             // Wait for CheckpointManager to initialize
             if (CheckpointManager.Instance == null)
             {
-                Debug.LogWarning("[SceneCheckpoint] CheckpointManager not initialized yet. Retrying...");
+                UnityEngine.Debug.LogWarning("[SceneCheckpoint] CheckpointManager not initialized yet. Retrying...");
                 Invoke(nameof(SaveCheckpointForCurrentScene), 0.5f);
                 return;
             }
@@ -57,8 +57,8 @@ namespace Slafurry.Game.Checkpoint
             
             if (section == 0)
             {
-                if (showDebugLogs)
-                    Debug.Log($"[SceneCheckpoint] Scene '{sceneName}' is not a gameplay scene (no section detected). Skipping checkpoint.");
+            if (showDebugLogs)
+                UnityEngine.Debug.Log($"[SceneCheckpoint] Scene '{sceneName}' is not a gameplay scene (no section detected). Skipping checkpoint.");
                 return;
             }
             
@@ -66,7 +66,7 @@ namespace Slafurry.Game.Checkpoint
             CheckpointManager.Instance.SaveCheckpoint(section, sceneName);
             
             if (showDebugLogs)
-                Debug.Log($"[SceneCheckpoint] ✓ Checkpoint saved: Section {section}, Scene '{sceneName}'");
+                UnityEngine.Debug.Log($"[SceneCheckpoint] ✓ Checkpoint saved: Section {section}, Scene '{sceneName}'");
         }
         
         /// <summary>
@@ -108,7 +108,7 @@ namespace Slafurry.Game.Checkpoint
         {
             string sceneName = SceneManager.GetActiveScene().name;
             int section = ParseSectionFromSceneName(sceneName);
-            Debug.Log($"Scene: '{sceneName}' → Section: {section}");
+            UnityEngine.Debug.Log($"Scene: '{sceneName}' → Section: {section}");
         }
 #endif
     }
