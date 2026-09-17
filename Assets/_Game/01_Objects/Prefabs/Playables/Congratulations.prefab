@@ -97,7 +97,7 @@ MonoBehaviour:
   popOutStartScale: 1
   popOutTargetScale: 0
   useUnscaledTime: 1
-  playOnEnable: 0
+  playOnEnable: 1
   onPopInComplete:
     m_PersistentCalls:
       m_Calls:

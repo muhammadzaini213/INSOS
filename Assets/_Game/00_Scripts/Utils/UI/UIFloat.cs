@@ -55,17 +55,9 @@ namespace Slafurry.Utils.UI
                 _pendingPlay = true;
         }
 
-        private void LateUpdate()
-        {
-            if (_pendingPlay)
-            {
-                _pendingPlay = false;
-                Float();
-            }
-        }
-
         private void OnDisable()
         {
+            Canvas.willRenderCanvases -= OnWillRenderCanvases;
             _pendingPlay = false;
 
             if (_routine != null)
@@ -73,6 +65,21 @@ namespace Slafurry.Utils.UI
                 StopCoroutine(_routine);
                 _routine = null;
             }
+        }
+
+        private void LateUpdate()
+        {
+            if (_pendingPlay)
+            {
+                _pendingPlay = false;
+                Canvas.willRenderCanvases += OnWillRenderCanvases;
+            }
+        }
+
+        private void OnWillRenderCanvases()
+        {
+            Canvas.willRenderCanvases -= OnWillRenderCanvases;
+            Float();
         }
 
         public void Float()

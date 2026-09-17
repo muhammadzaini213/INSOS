@@ -16,7 +16,6 @@ MonoBehaviour:
   effects:
   - groupID: Gigit
     clips:
-    - {fileID: 8300000, guid: 9642de436745102ecadccefc078c3a7a, type: 3}
     - {fileID: 8300000, guid: 18e703af5572a721b99025bb946bb020, type: 3}
     volume: 1
     maxSimultaneous: 3
@@ -29,6 +28,11 @@ MonoBehaviour:
   - groupID: Minum
     clips:
     - {fileID: 8300000, guid: b1d8b6ebaf2c04252ab6afbbf8078e43, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+  - groupID: Teko
+    clips:
+    - {fileID: 8300000, guid: a5893727b9557a835a705f541666ca8e, type: 3}
     volume: 1
     maxSimultaneous: 3
   poolSize: 8

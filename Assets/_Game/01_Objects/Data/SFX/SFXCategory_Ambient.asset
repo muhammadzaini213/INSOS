@@ -28,7 +28,6 @@ MonoBehaviour:
   - groupID: BusSekolah
     clips:
     - {fileID: 8300000, guid: 75293b748437629c2bfcd26c2181e02b, type: 3}
-    - {fileID: 8300000, guid: e2504f96b6782b390ba9a4b330bd649f, type: 3}
     volume: 1
     maxSimultaneous: 3
   - groupID: SuaraBersih
