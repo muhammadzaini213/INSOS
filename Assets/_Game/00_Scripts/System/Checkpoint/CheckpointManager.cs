@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Slafurry.Core.Abstract;
 using Slafurry.System.Player;
 
@@ -15,6 +16,9 @@ namespace Slafurry.System.Checkpoint
     ///   CheckpointManager.Instance.SaveCheckpoint(1, "05_Section 1");
     ///   CheckpointData data = CheckpointManager.Instance.LoadCheckpointProgress(1);
     ///   CheckpointManager.Instance.ResetSectionProgress(1);
+    /// 
+    /// UnityEvent Support:
+    ///   All methods are UnityEvent-compatible and can be wired directly in Inspector.
     /// </summary>
     public class CheckpointManager : GameSystem<CheckpointManager>
     {
@@ -31,10 +35,16 @@ namespace Slafurry.System.Checkpoint
             { 3, "01_Section 3" }
         };
         
-        // === EVENTS ===
+        // === EVENTS (Dual Event Pattern) ===
         
+        // C# Events
         public event Action<int, string> OnCheckpointSaved;  // (section, sceneName)
         public event Action<int> OnCheckpointReset;          // (section)
+        
+        // UnityEvents (Inspector-assignable)
+        [Header("UnityEvents (Optional)")]
+        [SerializeField] private UnityEvent<int, string> onCheckpointSavedUnityEvent;
+        [SerializeField] private UnityEvent<int> onCheckpointResetUnityEvent;
         
         // === INITIALIZATION ===
         
@@ -96,7 +106,10 @@ namespace Slafurry.System.Checkpoint
             PlayerPrefs.Save();
             
             Debug.Log($"[CheckpointManager] Checkpoint saved: Section {section}, Scene '{sceneName}', Gender {PlayerData.CurrentGender}");
+            
+            // Invoke both C# event and UnityEvent
             OnCheckpointSaved?.Invoke(section, sceneName);
+            onCheckpointSavedUnityEvent?.Invoke(section, sceneName);
         }
         
         /// <summary>
@@ -155,7 +168,10 @@ namespace Slafurry.System.Checkpoint
                 PlayerPrefs.DeleteKey(key);
                 PlayerPrefs.Save();
                 Debug.Log($"[CheckpointManager] Section {section} progress reset");
+                
+                // Invoke both C# event and UnityEvent
                 OnCheckpointReset?.Invoke(section);
+                onCheckpointResetUnityEvent?.Invoke(section);
             }
             else
             {
@@ -189,6 +205,7 @@ namespace Slafurry.System.Checkpoint
         
         /// <summary>
         /// Clear all checkpoints (for "Reset All Progress" button).
+        /// UnityEvent-compatible (no parameters).
         /// </summary>
         public void ClearAllCheckpoints()
         {
@@ -205,6 +222,95 @@ namespace Slafurry.System.Checkpoint
             PlayerPrefs.Save();
             
             Debug.Log("[CheckpointManager] All checkpoints cleared");
+        }
+        
+        // === UNITY EVENT WRAPPERS (For Inspector OnClick events) ===
+        
+        /// <summary>
+        /// Save checkpoint for Section 1. UnityEvent wrapper.
+        /// Wire to button OnClick in Inspector.
+        /// </summary>
+        public void SaveCheckpointSection1()
+        {
+            string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            SaveCheckpoint(1, sceneName);
+        }
+        
+        /// <summary>
+        /// Save checkpoint for Section 2. UnityEvent wrapper.
+        /// Wire to button OnClick in Inspector.
+        /// </summary>
+        public void SaveCheckpointSection2()
+        {
+            string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            SaveCheckpoint(2, sceneName);
+        }
+        
+        /// <summary>
+        /// Save checkpoint for Section 3. UnityEvent wrapper.
+        /// Wire to button OnClick in Inspector.
+        /// </summary>
+        public void SaveCheckpointSection3()
+        {
+            string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            SaveCheckpoint(3, sceneName);
+        }
+        
+        /// <summary>
+        /// Reset Section 1 progress. UnityEvent wrapper.
+        /// Wire to button OnClick in Inspector.
+        /// </summary>
+        public void ResetSection1()
+        {
+            ResetSectionProgress(1);
+        }
+        
+        /// <summary>
+        /// Reset Section 2 progress. UnityEvent wrapper.
+        /// Wire to button OnClick in Inspector.
+        /// </summary>
+        public void ResetSection2()
+        {
+            ResetSectionProgress(2);
+        }
+        
+        /// <summary>
+        /// Reset Section 3 progress. UnityEvent wrapper.
+        /// Wire to button OnClick in Inspector.
+        /// </summary>
+        public void ResetSection3()
+        {
+            ResetSectionProgress(3);
+        }
+        
+        /// <summary>
+        /// Load Section 1 scene (checkpoint or default). UnityEvent wrapper.
+        /// Wire to button OnClick in Inspector.
+        /// </summary>
+        public void LoadSection1Scene()
+        {
+            string scene = GetSceneToLoad(1);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
+        }
+        
+        /// <summary>
+        /// Load Section 2 scene (checkpoint or default). UnityEvent wrapper.
+        /// Wire to button OnClick in Inspector.
+        /// </summary>
+        public void LoadSection2Scene()
+        {
+            string scene = GetSceneToLoad(2);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
+        }
+        
+        /// <summary>
+        /// Load Section 3 scene (checkpoint or default). UnityEvent wrapper.
+        /// Wire to button OnClick in Inspector.
+        /// </summary>
+        public void LoadSection3Scene()
+        {
+            string scene = GetSceneToLoad(3);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
         }
         
         /// <summary>
