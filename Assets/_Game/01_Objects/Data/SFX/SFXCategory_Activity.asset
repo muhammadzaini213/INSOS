@@ -18,7 +18,7 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: ff406bb7354c538bf981403984d42ecc, type: 3}
     volume: 1
-    maxSimultaneous: 3
+    maxSimultaneous: 1
   - groupID: KumurKumur
     clips:
     - {fileID: 8300000, guid: eb93c2abedc0ed06a81276094adba6a0, type: 3}
@@ -72,6 +72,11 @@ MonoBehaviour:
   - groupID: TuangAir
     clips:
     - {fileID: 8300000, guid: cbe685df7e55c0571bd0b34fee7a7d23, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+  - groupID: KumurKumur
+    clips:
+    - {fileID: 8300000, guid: eb93c2abedc0ed06a81276094adba6a0, type: 3}
     volume: 1
     maxSimultaneous: 3
   poolSize: 8
