@@ -46,7 +46,7 @@ MonoBehaviour:
     maxSimultaneous: 3
   - groupID: LapKaca
     clips:
-    - {fileID: 8300000, guid: e949051d69ac871428ad8b8ec2dd067b, type: 3}
+    - {fileID: 8300000, guid: d0ac7a3c6b2be33d38569ac42ba37bf2, type: 3}
     volume: 1
     maxSimultaneous: 3
   - groupID: SemprotKaca
