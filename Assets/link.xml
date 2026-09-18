@@ -19,6 +19,5 @@
     <type fullname="AnalyticsBuffer" preserve="all"/>
     <type fullname="AnalyticsConfig" preserve="all"/>
     <type fullname="AnalyticsService" preserve="all"/>
-    <type fullname="UnityEventTracker" preserve="all"/>
   </assembly>
 </linker>

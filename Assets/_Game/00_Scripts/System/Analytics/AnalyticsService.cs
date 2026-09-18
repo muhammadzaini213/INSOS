@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using Slafurry.Core.Abstract;
 using Slafurry.System.Player;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +18,7 @@ public class AnalyticsService : GameSystem<AnalyticsService>
 
     private AnalyticsBuffer _buffer;
     private readonly Dictionary<string, long> _sceneEnterTimes = new();
+    private readonly HashSet<int> _scannedSceneRoots = new();
     private bool _isSending;
 
     private string _supabaseUrl;
@@ -55,6 +58,8 @@ public class AnalyticsService : GameSystem<AnalyticsService>
         {
             Debug.Log($"[Analytics] Supabase configured: {_supabaseUrl}");
         }
+
+        ScanCurrentScenes();
     }
 
     private IEnumerator LoadConfig()
@@ -110,11 +115,15 @@ public class AnalyticsService : GameSystem<AnalyticsService>
         _buffer.Tick(Time.unscaledDeltaTime);
     }
 
+    // ── Scene duration tracking ──────────────────────────────────
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "DontDestroyOnLoad")
             return;
+
         _sceneEnterTimes[scene.name] = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+        ScanScene(scene);
     }
 
     private void OnSceneUnloaded(Scene scene)
@@ -138,6 +147,97 @@ public class AnalyticsService : GameSystem<AnalyticsService>
             }
         );
     }
+
+    // ── Auto-scan UnityEvents via reflection ─────────────────────
+
+    private void ScanCurrentScenes()
+    {
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            Scene scene = SceneManager.GetSceneAt(i);
+            if (scene.isLoaded && scene.name != "DontDestroyOnLoad")
+                ScanScene(scene);
+        }
+    }
+
+    private void ScanScene(Scene scene)
+    {
+        foreach (GameObject root in scene.GetRootGameObjects())
+        {
+            int id = root.GetInstanceID();
+            if (!_scannedSceneRoots.Add(id))
+                continue;
+
+            ScanGameObject(root);
+        }
+    }
+
+    private void ScanGameObject(GameObject go)
+    {
+        foreach (MonoBehaviour mb in go.GetComponentsInChildren<MonoBehaviour>(true))
+        {
+            if (mb == null || mb == this)
+                continue;
+
+            ScanBehaviour(mb);
+        }
+    }
+
+    private void ScanBehaviour(MonoBehaviour mb)
+    {
+        var bindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+
+        foreach (FieldInfo field in mb.GetType().GetFields(bindingFlags))
+        {
+            if (!typeof(UnityEvent).IsAssignableFrom(field.FieldType))
+                continue;
+
+            UnityEvent evt;
+            try
+            {
+                evt = (UnityEvent)field.GetValue(mb);
+            }
+            catch
+            {
+                continue;
+            }
+
+            if (evt == null)
+                continue;
+
+            string eventName = field.Name;
+            string objectName = mb.gameObject.name;
+            string parentName =
+                mb.transform.parent != null ? mb.transform.parent.gameObject.name : "root";
+            string sceneName = mb.gameObject.scene.name;
+
+            evt.AddListener(() =>
+                OnTrackedEventFired(eventName, objectName, parentName, sceneName)
+            );
+        }
+    }
+
+    private void OnTrackedEventFired(
+        string eventName,
+        string objectName,
+        string parentName,
+        string sceneName
+    )
+    {
+        Enqueue(
+            new AnalyticsEvent
+            {
+                EventName = eventName,
+                ObjectName = objectName,
+                ParentName = parentName,
+                SceneName = sceneName,
+                PlayerName = PlayerData.PlayerName,
+                Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+            }
+        );
+    }
+
+    // ── Supabase HTTP ────────────────────────────────────────────
 
     private void FlushToSupabase(List<AnalyticsEvent> batch)
     {
