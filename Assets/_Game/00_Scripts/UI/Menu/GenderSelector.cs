@@ -1,5 +1,4 @@
 using Slafurry.System.Player;
-using Slafurry.System.Scene;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,17 +19,6 @@ namespace Slafurry.UI.Menu
 
         [SerializeField]
         private float selectedAlpha = 1f;
-
-        private void Start()
-        {
-            if (!string.IsNullOrEmpty(PlayerData.PlayerName) && PlayerPrefs.HasKey("PlayerGender"))
-            {
-                SceneSystem.Load("03_ChooseActivityMenu");
-                return;
-            }
-
-            ApplySelection(PlayerData.CurrentGender);
-        }
 
         private void OnEnable()
         {
