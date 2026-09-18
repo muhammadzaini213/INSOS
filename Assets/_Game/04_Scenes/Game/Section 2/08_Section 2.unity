@@ -2328,7 +2328,7 @@ MonoBehaviour:
         m_MethodName: StartDialog
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 948869ef0ea87a17a91c1aed7e2859ec,
+          m_ObjectArgument: {fileID: 11400000, guid: c524a3efba9326d5398b96db24dc3622,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: DialogBucket, Assembly-CSharp
           m_IntArgument: 0
