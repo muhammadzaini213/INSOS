@@ -16,7 +16,7 @@ MonoBehaviour:
   effects:
   - groupID: PerutLapar
     clips:
-    - {fileID: 8300000, guid: c502906d57f7a028da1b7cae278ccdd9, type: 3}
+    - {fileID: 8300000, guid: a9b2fe1dc3060264a84a517febc90f64, type: 3}
     volume: 1
     maxSimultaneous: 3
   - groupID: Berpikir
