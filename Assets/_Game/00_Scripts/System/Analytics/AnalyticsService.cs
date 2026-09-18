@@ -324,9 +324,6 @@ public class AnalyticsService : GameSystem<AnalyticsService>
             sb.Append(',');
             sb.Append("\"duration_ms\":");
             sb.Append(e.DurationMs);
-            sb.Append(',');
-            sb.Append("\"timestamp\":");
-            sb.Append(e.Timestamp);
             sb.Append('}');
         }
 
