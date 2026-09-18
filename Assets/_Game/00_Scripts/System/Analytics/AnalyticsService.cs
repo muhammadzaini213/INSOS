@@ -30,8 +30,6 @@ public class AnalyticsService : GameSystem<AnalyticsService>
     {
         base.OnSingletonAwake();
 
-        LoadConfig();
-
         _buffer = new AnalyticsBuffer();
         _buffer.Initialize(
             config != null ? config.BatchSize : 50,
@@ -40,44 +38,10 @@ public class AnalyticsService : GameSystem<AnalyticsService>
         );
     }
 
-    private void LoadConfig()
-    {
-        string url = null;
-        string key = null;
-
-        string path = Path.Combine(Application.streamingAssetsPath, StreamingAssetsConfig);
-        if (File.Exists(path))
-        {
-            try
-            {
-                string json = File.ReadAllText(path);
-                var data = JsonUtility.FromJson<StreamingConfig>(json);
-                if (data != null)
-                {
-                    url = data.supabaseUrl;
-                    key = data.supabaseAnonKey;
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.LogWarning($"[Analytics] Failed to load streaming config: {e.Message}");
-            }
-        }
-
-        if (!string.IsNullOrEmpty(url) && !string.IsNullOrEmpty(key))
-        {
-            _supabaseUrl = url;
-            _supabaseAnonKey = key;
-        }
-        else
-        {
-            _supabaseUrl = config?.SupabaseUrl ?? "";
-            _supabaseAnonKey = config?.SupabaseAnonKey ?? "";
-        }
-    }
-
     public override IEnumerator Initialize()
     {
+        yield return StartCoroutine(LoadConfig());
+
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.sceneUnloaded += OnSceneUnloaded;
 
@@ -91,8 +55,37 @@ public class AnalyticsService : GameSystem<AnalyticsService>
         {
             Debug.Log($"[Analytics] Supabase configured: {_supabaseUrl}");
         }
+    }
 
-        yield return null;
+    private IEnumerator LoadConfig()
+    {
+        string path = Path.Combine(Application.streamingAssetsPath, StreamingAssetsConfig);
+
+        using var request = UnityWebRequest.Get(path);
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            try
+            {
+                var data = JsonUtility.FromJson<StreamingConfig>(request.downloadHandler.text);
+                if (data != null && !string.IsNullOrEmpty(data.supabaseUrl))
+                {
+                    _supabaseUrl = data.supabaseUrl;
+                    _supabaseAnonKey = data.supabaseAnonKey;
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[Analytics] Failed to parse config: {e.Message}");
+            }
+        }
+
+        if (string.IsNullOrEmpty(_supabaseUrl))
+        {
+            _supabaseUrl = config?.SupabaseUrl ?? "";
+            _supabaseAnonKey = config?.SupabaseAnonKey ?? "";
+        }
     }
 
     public override void PostInitialize() { }
