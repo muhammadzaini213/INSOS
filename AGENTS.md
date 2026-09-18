@@ -83,7 +83,7 @@ Assets/
 - **Singletons**: Always inherit `GameSystem<T>` or `LocalSingleton<T>`, never implement singleton pattern manually
 - **Triggers**: Inherit `BaseTrigger`, use `playLimit`/`unlimited` for one-shot vs repeat
 - **Editor tools**: Use `[GameAssetCreator("Category", "Name")]` attribute on ScriptableObjects to register in the custom asset creator window (`Slafurry > Game Data`)
-- **PlayerData**: Static class in `Slafurry.System.Player` — stores gender selection (Boy/Girl) in PlayerPrefs, fires `OnGenderChanged`
+- **PlayerData**: Static class in `Slafurry.System.Player` — stores gender (Boy/Girl) and `PlayerName` in PlayerPrefs, fires `OnGenderChanged` / `OnNameChanged`
 - **Dialog**: `Dialog` struct + `DialogBucket` ScriptableObject (global namespace), displayed by `DialogHUD` with typing effect
 - **UI Effects**: Most expose `useUnscaledTime` (default `true`) so they work during pause
 - **UI Position Capture**: `UIBubble`, `UIFloat`, `UISlide` use `Canvas.willRenderCanvases` callback to capture initial position after layout — don't read `anchoredPosition` in `Awake()` or `OnEnable()` for LayoutGroup-managed elements
@@ -138,6 +138,25 @@ Assets/
 - `VerticalScrollView` (`Slafurry.Game.UI`): page-based scroll view with up/down buttons
 - `LocalizedText` (`Slafurry.UI.Generic`): TMP_Text wrapper that auto-refreshes on language change
 - `WebLockOrientation` (`Slafurry.Utils`): forces landscape fullscreen on first touch for WebGL mobile
+- `MobileKeyboardTrigger`: opens `TouchScreenKeyboard` on tap via `IPointerClickHandler`, syncs text to `TMP_InputField`, saves to `PlayerData.PlayerName` on close/disable. Use `IPointerClickHandler` NOT `ISelectHandler` — `OnSelect` doesn't fire on re-tap when already selected
+
+### Analytics System (global namespace)
+Sends batched events to Supabase — **all analytics scripts use global namespace** (not `Slafurry`).
+
+- `AnalyticsService` (`GameSystem<AnalyticsService>`): auto-scans all `UnityEvent` fields via reflection, tracks scene duration, sends to Supabase REST API
+- `AnalyticsBuffer`: thread-safe queue, flushes every 30s or 50 events
+- `AnalyticsEvent`: struct with `EventName`, `ObjectName`, `ParentName`, `SceneName`, `PlayerName`, `DeviceId`, `DurationMs`
+- `AnalyticsConfig`: ScriptableObject (`Assets/_Game/01_Objects/Data/Analytics/`)
+
+**Supabase config**: injected at CI build time via GitHub secrets → `Assets/StreamingAssets/analytics_config.json` (gitignored). Falls back to `AnalyticsConfig` SO if file missing.
+
+**Table schema**: `analytics_events` with columns: `id` (uuid), `event_name`, `object_name`, `parent_name`, `scene_name`, `player_name`, `device_id`, `duration_ms` (int8), `created_at` (timestamptz).
+
+**Device ID**: `SystemInfo.deviceUniqueIdentifier` (works on Android). On WebGL returns `"N/A"` — fallback generates UUID stored in PlayerPrefs.
+
+**Event types**: `scene_duration` (object_name = scene, duration_ms = time spent), or UnityEvent field name (auto-scanned from all MonoBehaviours).
+
+**Security**: Supabase anon key is a public publishable key, NOT the secret key. Never use `sb_secret_*` in client code.
 
 ## Git Workflow
 - Branch from `main`
@@ -149,6 +168,6 @@ Assets/
 - **Build script**: `Assets/Editor/BuildScript.cs` — called by CI via `-executeMethod BuildScript.Build`
 - **Runners**: `macos-latest` (both platforms — `buildalon` requires pre-installed Unity Hub)
 - **License activation**: `buildalon/activate-unity-license@v2` with `UNITY_EMAIL` + `UNITY_PASSWORD` secrets
-- **Required secrets**: `UNITY_EMAIL`, `UNITY_PASSWORD`, `BUTLER_API_KEY`
+- **Required secrets**: `UNITY_EMAIL`, `UNITY_PASSWORD`, `BUTLER_API_KEY`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`
 - **itch.io channels**: `android` (APK), `html5` (WebGL)
 - **Android keystore**: auto-generated during CI (alias `insos`, password `insos123`) — not in repo
