@@ -5,6 +5,6 @@ public struct AnalyticsEvent
     public string ParentName;
     public string SceneName;
     public string PlayerName;
-    public long Timestamp;
+    public string DeviceId;
     public long DurationMs;
 }

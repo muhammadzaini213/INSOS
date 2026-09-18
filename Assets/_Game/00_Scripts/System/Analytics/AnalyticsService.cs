@@ -142,7 +142,7 @@ public class AnalyticsService : GameSystem<AnalyticsService>
                 ParentName = "",
                 SceneName = scene.name,
                 PlayerName = PlayerData.PlayerName,
-                Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+                DeviceId = SystemInfo.deviceUniqueIdentifier,
                 DurationMs = duration,
             }
         );
@@ -232,7 +232,7 @@ public class AnalyticsService : GameSystem<AnalyticsService>
                 ParentName = parentName,
                 SceneName = sceneName,
                 PlayerName = PlayerData.PlayerName,
-                Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+                DeviceId = SystemInfo.deviceUniqueIdentifier,
             }
         );
     }
@@ -248,7 +248,7 @@ public class AnalyticsService : GameSystem<AnalyticsService>
                 Debug.Log(
                     $"[Analytics] {evt.EventName}: obj={evt.ObjectName}, "
                         + $"parent={evt.ParentName}, scene={evt.SceneName}, "
-                        + $"player={evt.PlayerName}, ts={evt.Timestamp}"
+                        + $"player={evt.PlayerName}, device={evt.DeviceId}"
                         + (evt.DurationMs > 0 ? $", dur={evt.DurationMs}ms" : "")
                 );
             }
@@ -321,6 +321,8 @@ public class AnalyticsService : GameSystem<AnalyticsService>
             AppendField(sb, "scene_name", e.SceneName);
             sb.Append(',');
             AppendField(sb, "player_name", e.PlayerName);
+            sb.Append(',');
+            AppendField(sb, "device_id", e.DeviceId);
             sb.Append(',');
             sb.Append("\"duration_ms\":");
             sb.Append(e.DurationMs);
