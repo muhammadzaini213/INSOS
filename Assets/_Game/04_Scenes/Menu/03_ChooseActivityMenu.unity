@@ -322,9 +322,9 @@ GameObject:
   - component: {fileID: 297280253}
   - component: {fileID: 297280252}
   - component: {fileID: 297280251}
-  - component: {fileID: 297280254}
   - component: {fileID: 297280255}
   - component: {fileID: 297280257}
+  - component: {fileID: 297280258}
   m_Layer: 5
   m_Name: CardGame
   m_TagString: Untagged
@@ -445,21 +445,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 297280249}
   m_CullTransparentMesh: 1
---- !u!114 &297280254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 297280249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad67bccfaa506757a1fac798993a1f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playLimit: 0
-  unlimited: 1
-  sceneName: 01_Section 3
 --- !u!114 &297280255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,9 +502,9 @@ MonoBehaviour:
   onPunchComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 297280254}
-        m_TargetAssemblyTypeName: ChangeSceneTrigger, Assembly-CSharp
-        m_MethodName: ChangeScene
+      - m_Target: {fileID: 297280258}
+        m_TargetAssemblyTypeName: CheckpointTrigger, Assembly-CSharp
+        m_MethodName: LoadSection3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -529,6 +514,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &297280258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297280249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea32d8f0cd58a68794fca55dc295ff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  showDebugLogs: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,9 +916,9 @@ GameObject:
   - component: {fileID: 661636374}
   - component: {fileID: 661636373}
   - component: {fileID: 661636372}
-  - component: {fileID: 661636375}
   - component: {fileID: 661636376}
   - component: {fileID: 661636378}
+  - component: {fileID: 661636379}
   m_Layer: 5
   m_Name: Cleaning
   m_TagString: Untagged
@@ -1039,21 +1039,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661636370}
   m_CullTransparentMesh: 1
---- !u!114 &661636375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 661636370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad67bccfaa506757a1fac798993a1f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playLimit: 0
-  unlimited: 1
-  sceneName: 01_Section 2
 --- !u!114 &661636376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1111,9 +1096,9 @@ MonoBehaviour:
   onPunchComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 661636375}
-        m_TargetAssemblyTypeName: ChangeSceneTrigger, Assembly-CSharp
-        m_MethodName: ChangeScene
+      - m_Target: {fileID: 661636379}
+        m_TargetAssemblyTypeName: CheckpointTrigger, Assembly-CSharp
+        m_MethodName: LoadSection2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1123,6 +1108,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &661636379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661636370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea32d8f0cd58a68794fca55dc295ff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  showDebugLogs: 0
 --- !u!1 &759981221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,6 +1135,7 @@ GameObject:
   - component: {fileID: 759981225}
   - component: {fileID: 759981223}
   - component: {fileID: 759981226}
+  - component: {fileID: 759981227}
   m_Layer: 5
   m_Name: === Activity ===
   m_TagString: Untagged
@@ -1222,6 +1223,25 @@ MonoBehaviour:
   onFloatStop:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &759981227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759981221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0f451e6f09b7d499148ddbd6696686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  morningActivityButton: {fileID: 2024201108}
+  cleaningButton: {fileID: 661636372}
+  cardGameButton: {fileID: 297280251}
+  section1ContinueIcon: {fileID: 0}
+  section2ContinueIcon: {fileID: 0}
+  section3ContinueIcon: {fileID: 0}
+  showDebugLogs: 1
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1393,9 +1413,9 @@ GameObject:
   - component: {fileID: 2024201110}
   - component: {fileID: 2024201109}
   - component: {fileID: 2024201108}
-  - component: {fileID: 2024201111}
   - component: {fileID: 2024201112}
   - component: {fileID: 2024201114}
+  - component: {fileID: 2024201115}
   m_Layer: 5
   m_Name: MorningActivity
   m_TagString: Untagged
@@ -1516,21 +1536,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2024201106}
   m_CullTransparentMesh: 1
---- !u!114 &2024201111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2024201106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad67bccfaa506757a1fac798993a1f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playLimit: 0
-  unlimited: 1
-  sceneName: 01_Section 1
 --- !u!114 &2024201112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1588,9 +1593,9 @@ MonoBehaviour:
   onPunchComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2024201111}
-        m_TargetAssemblyTypeName: ChangeSceneTrigger, Assembly-CSharp
-        m_MethodName: ChangeScene
+      - m_Target: {fileID: 2024201115}
+        m_TargetAssemblyTypeName: CheckpointTrigger, Assembly-CSharp
+        m_MethodName: LoadSection1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1600,6 +1605,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2024201115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024201106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea32d8f0cd58a68794fca55dc295ff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  showDebugLogs: 0
 --- !u!1 &2144198435
 GameObject:
   m_ObjectHideFlags: 0
