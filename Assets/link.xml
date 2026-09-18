@@ -1,0 +1,24 @@
+<linker>
+  <!-- Preserve UnityEvent types for reflection-based UnityEventTracker -->
+  <assembly fullname="UnityEngine.CoreModule" preserve="all">
+    <type fullname="UnityEngine.Events.UnityEvent" preserve="all"/>
+    <type fullname="UnityEngine.Events.UnityEvent`1" preserve="all"/>
+    <type fullname="UnityEngine.Events.UnityEvent`2" preserve="all"/>
+    <type fullname="UnityEngine.Events.UnityEvent`3" preserve="all"/>
+    <type fullname="UnityEngine.Events.UnityEvent`4" preserve="all"/>
+    <type fullname="UnityEngine.Events.UnityAction" preserve="all"/>
+    <type fullname="UnityEngine.Events.UnityAction`1" preserve="all"/>
+    <type fullname="UnityEngine.Events.UnityAction`2" preserve="all"/>
+    <type fullname="UnityEngine.Events.UnityAction`3" preserve="all"/>
+    <type fullname="UnityEngine.Events.UnityAction`4" preserve="all"/>
+  </assembly>
+
+  <!-- Preserve Analytics types for reflection -->
+  <assembly fullname="Assembly-CSharp" preserve="all">
+    <type fullname="AnalyticsEvent" preserve="all"/>
+    <type fullname="AnalyticsBuffer" preserve="all"/>
+    <type fullname="AnalyticsConfig" preserve="all"/>
+    <type fullname="AnalyticsService" preserve="all"/>
+    <type fullname="UnityEventTracker" preserve="all"/>
+  </assembly>
+</linker>

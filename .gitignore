@@ -97,3 +97,6 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# Analytics secrets (injected by CI)
+/[Aa]ssets/StreamingAssets/analytics_config.json
