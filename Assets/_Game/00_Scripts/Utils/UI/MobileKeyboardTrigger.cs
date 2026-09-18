@@ -1,9 +1,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-public class MobileKeyboardTrigger : MonoBehaviour, IPointerClickHandler
+public class MobileKeyboardTrigger : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     [SerializeField]
     private TMP_InputField inputField;
@@ -26,14 +25,12 @@ public class MobileKeyboardTrigger : MonoBehaviour, IPointerClickHandler
 
         if (_keyboard.status == TouchScreenKeyboard.Status.Done)
         {
-            inputField.text = _keyboard.text;
             inputField.DeactivateInputField();
-            EventSystem.current.SetSelectedGameObject(null);
             _keyboard = null;
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnSelect(BaseEventData eventData)
     {
         if (inputField == null)
             return;
@@ -48,5 +45,14 @@ public class MobileKeyboardTrigger : MonoBehaviour, IPointerClickHandler
             false,
             "Name"
         );
+    }
+
+    public void OnDeselect(BaseEventData eventData)
+    {
+        if (_keyboard != null && _keyboard.active)
+        {
+            inputField.text = _keyboard.text;
+            _keyboard = null;
+        }
     }
 }
