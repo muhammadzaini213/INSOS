@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd29ebafef3c53b3f89928404a464414, type: 3}
   m_Name: AnalyticsConfig
   m_EditorClassIdentifier: 
-  supabaseUrl: 
-  supabaseAnonKey: 
+  supabaseUrl: https://zmyrzbtzunefzmamaesl.supabase.co
+  supabaseAnonKey: sb_publishable_WXyKxMTtZV_4B9iwAgeSFA_yeWkqDOK
   batchSize: 50
   flushInterval: 30
   enabled: 1
