@@ -3249,8 +3249,8 @@ GameObject:
   m_Component:
   - component: {fileID: 603286340}
   - component: {fileID: 603286343}
-  - component: {fileID: 603286342}
   - component: {fileID: 603286341}
+  - component: {fileID: 603286344}
   m_Layer: 5
   m_Name: Tray
   m_TagString: Untagged
@@ -3299,7 +3299,15 @@ MonoBehaviour:
   onIndexChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &603286342
+--- !u!222 &603286343
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603286339}
+  m_CullTransparentMesh: 1
+--- !u!114 &603286344
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3319,7 +3327,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1502558673, guid: 56b33891f9adb71eab9b3b933b5914f2, type: 3}
+  m_Sprite: {fileID: -370503566, guid: e4f639f7fdf047cf995e80f78fbe1431, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3329,14 +3337,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!222 &603286343
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 603286339}
-  m_CullTransparentMesh: 1
 --- !u!1 &746015996
 GameObject:
   m_ObjectHideFlags: 0

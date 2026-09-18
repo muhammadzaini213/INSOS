@@ -786,6 +786,7 @@ GameObject:
   - component: {fileID: 482966212}
   - component: {fileID: 482966211}
   - component: {fileID: 482966210}
+  - component: {fileID: 482966216}
   m_Layer: 5
   m_Name: Water (2)
   m_TagString: Untagged
@@ -807,10 +808,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 581106873}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 797, y: -546.6375}
-  m_SizeDelta: {x: 208.5119, y: 129.9335}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 136, y: 102.36249}
+  m_SizeDelta: {x: 208.5119, y: 129.93347}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &482966210
 MonoBehaviour:
@@ -960,6 +961,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 482966216}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onCorrectHoverExit:
     m_PersistentCalls:
       m_Calls: []
@@ -1013,6 +1026,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482966208}
   m_CullTransparentMesh: 1
+--- !u!114 &482966216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482966208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: Activity
+  key: LapKaca
 --- !u!1 &540683313
 GameObject:
   m_ObjectHideFlags: 0
@@ -2086,7 +2115,7 @@ MonoBehaviour:
         m_MethodName: StartDialog
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 948869ef0ea87a17a91c1aed7e2859ec,
+          m_ObjectArgument: {fileID: 11400000, guid: 189dc400212679a7eadc24efc8c78088,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: DialogBucket, Assembly-CSharp
           m_IntArgument: 0
@@ -2285,6 +2314,7 @@ GameObject:
   - component: {fileID: 1346726052}
   - component: {fileID: 1346726051}
   - component: {fileID: 1346726050}
+  - component: {fileID: 1346726056}
   m_Layer: 5
   m_Name: Water (1)
   m_TagString: Untagged
@@ -2306,10 +2336,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 581106873}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 524, y: -546.6375}
-  m_SizeDelta: {x: 208.5119, y: 129.9335}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -137, y: 102.36249}
+  m_SizeDelta: {x: 208.5119, y: 129.93347}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1346726050
 MonoBehaviour:
@@ -2459,6 +2489,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 482966216}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onCorrectHoverExit:
     m_PersistentCalls:
       m_Calls: []
@@ -2512,6 +2554,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1346726048}
   m_CullTransparentMesh: 1
+--- !u!114 &1346726056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346726048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: Activity
+  key: LapKaca
 --- !u!1 &1537399852
 GameObject:
   m_ObjectHideFlags: 0
@@ -2673,6 +2731,7 @@ GameObject:
   - component: {fileID: 1660631044}
   - component: {fileID: 1660631046}
   - component: {fileID: 1660631045}
+  - component: {fileID: 1660631047}
   m_Layer: 5
   m_Name: Water
   m_TagString: Untagged
@@ -2694,10 +2753,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 581106873}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 243.92758, y: -546.6375}
-  m_SizeDelta: {x: 208.5119, y: 129.9335}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -417.07242, y: 102.36249}
+  m_SizeDelta: {x: 208.5119, y: 129.93347}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1660631041
 MonoBehaviour:
@@ -2750,6 +2809,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 482966216}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2900,6 +2971,22 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1660631047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660631039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: Activity
+  key: LapKaca
 --- !u!1 &1729265117
 GameObject:
   m_ObjectHideFlags: 0
@@ -2972,6 +3059,7 @@ GameObject:
   - component: {fileID: 1908952211}
   - component: {fileID: 1908952214}
   - component: {fileID: 1908952213}
+  - component: {fileID: 1908952215}
   m_Layer: 5
   m_Name: Pel
   m_TagString: Untagged
@@ -3054,7 +3142,19 @@ MonoBehaviour:
   canDrag: 1
   onDragStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1908952215}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDragEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -3077,6 +3177,22 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1908952215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908952209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: UI
+  key: Pop
 --- !u!1 &1950752411
 GameObject:
   m_ObjectHideFlags: 0

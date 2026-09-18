@@ -31,7 +31,7 @@ MonoBehaviour:
     maxSimultaneous: 3
   - groupID: Menyapu
     clips:
-    - {fileID: 8300000, guid: 9933135631127cefdaa3c82a9551ae37, type: 3}
+    - {fileID: 8300000, guid: abc8c72d5510a63b2a86a3d7d431836e, type: 3}
     volume: 1
     maxSimultaneous: 3
   - groupID: SapuLidi
