@@ -6,12 +6,13 @@ namespace Slafurry.System.Player
     public enum Gender
     {
         Boy = 0,
-        Girl = 1
+        Girl = 1,
     }
 
     public static class PlayerData
     {
         private const string GenderKey = "PlayerGender";
+        private const string NameKey = "PlayerName";
 
         public static Gender CurrentGender
         {
@@ -24,13 +25,29 @@ namespace Slafurry.System.Player
             }
         }
 
+        public static string PlayerName
+        {
+            get => PlayerPrefs.GetString(NameKey, "");
+            set
+            {
+                PlayerPrefs.SetString(NameKey, value);
+                PlayerPrefs.Save();
+                OnNameChanged?.Invoke(value);
+            }
+        }
+
         public static bool IsBoy => CurrentGender == Gender.Boy;
         public static bool IsGirl => CurrentGender == Gender.Girl;
 
         public static event Action<Gender> OnGenderChanged;
+        public static event Action<string> OnNameChanged;
 
         public static void SetGender(Gender gender) => CurrentGender = gender;
+
         public static void SetBoy() => CurrentGender = Gender.Boy;
+
         public static void SetGirl() => CurrentGender = Gender.Girl;
+
+        public static void SetName(string name) => PlayerName = name;
     }
 }

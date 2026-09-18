@@ -123,6 +123,22 @@ jobs:
             -keypass insos123 \
             -dname "CN=Setara Project, OU=Dev, O=Setara, L=ID, ST=ID, C=ID"
 
+      - name: Inject Supabase config
+        if: env.SUPABASE_URL != ''
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        shell: bash
+        run: |
+          mkdir -p Assets/StreamingAssets
+          cat > Assets/StreamingAssets/analytics_config.json << 'EOF'
+          {
+            "supabaseUrl": "$SUPABASE_URL",
+            "supabaseAnonKey": "$SUPABASE_ANON_KEY"
+          }
+          EOF
+          echo "Injected analytics_config.json"
+
       - name: Build Unity project
         uses: buildalon/unity-action@v3
         with:

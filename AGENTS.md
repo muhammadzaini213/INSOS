@@ -64,7 +64,7 @@ Assets/
 ### Scene Flow
 **Build order**: `01_StartMenu` → `02_ChooseGenderMenu` → `03_ChooseActivityMenu` → Section 1
 
-**Section 1** has 20 scenes (cutscenes, gameplay rooms, mirror, toothbrushing, kitchen, sandwich, etc.). **Section 2** has 4 scenes (including `TutorialTest`). **Section 3** has 10 scenes.
+**Section 1** has 20 scenes (cutscenes, gameplay rooms, mirror, toothbrushing, kitchen, sandwich, etc.). **Section 2** has 8 scenes. **Section 3** has 10 scenes.
 
 **Menu scenes**: `01_StartMenu`, `02_ChooseGenderMenu`, `03_ChooseActivityMenu` (in `04_Scenes/Menu/`)
 
@@ -145,7 +145,7 @@ Assets/
 - `.csproj`/`.sln` files are gitignored but exist locally (committed before gitignore rule)
 
 ## CI/CD
-- **Workflow**: `.github/workflows/build.yml` — builds Android + WebGL, deploys to itch.io via Butler
+- **Workflow**: `.github/workflows/build.yml` — manual trigger only (`workflow_dispatch`), builds Android + WebGL, deploys to itch.io via Butler
 - **Build script**: `Assets/Editor/BuildScript.cs` — called by CI via `-executeMethod BuildScript.Build`
 - **Runners**: `macos-latest` (both platforms — `buildalon` requires pre-installed Unity Hub)
 - **License activation**: `buildalon/activate-unity-license@v2` with `UNITY_EMAIL` + `UNITY_PASSWORD` secrets
