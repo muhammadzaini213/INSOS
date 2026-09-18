@@ -1,7 +1,7 @@
+using Slafurry.System.Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class MobileKeyboardTrigger : MonoBehaviour, IPointerClickHandler
 {
@@ -14,6 +14,9 @@ public class MobileKeyboardTrigger : MonoBehaviour, IPointerClickHandler
     {
         if (inputField == null)
             inputField = GetComponent<TMP_InputField>();
+
+        if (!string.IsNullOrEmpty(PlayerData.PlayerName))
+            inputField.text = PlayerData.PlayerName;
     }
 
     private void Update()
@@ -27,6 +30,7 @@ public class MobileKeyboardTrigger : MonoBehaviour, IPointerClickHandler
         if (_keyboard.status == TouchScreenKeyboard.Status.Done)
         {
             inputField.text = _keyboard.text;
+            PlayerData.SetName(_keyboard.text);
             inputField.DeactivateInputField();
             EventSystem.current.SetSelectedGameObject(null);
             _keyboard = null;
@@ -48,5 +52,11 @@ public class MobileKeyboardTrigger : MonoBehaviour, IPointerClickHandler
             false,
             "Name"
         );
+    }
+
+    private void OnDisable()
+    {
+        if (inputField != null && !string.IsNullOrEmpty(inputField.text))
+            PlayerData.SetName(inputField.text);
     }
 }
