@@ -131,12 +131,9 @@ jobs:
         shell: bash
         run: |
           mkdir -p Assets/StreamingAssets
-          cat > Assets/StreamingAssets/analytics_config.json << 'EOF'
-          {
-            "supabaseUrl": "$SUPABASE_URL",
-            "supabaseAnonKey": "$SUPABASE_ANON_KEY"
-          }
-          EOF
+          printf '{"supabaseUrl":"%s","supabaseAnonKey":"%s"}\n' \
+            "$SUPABASE_URL" "$SUPABASE_ANON_KEY" \
+            > Assets/StreamingAssets/analytics_config.json
           echo "Injected analytics_config.json"
 
       - name: Build Unity project
