@@ -27,12 +27,12 @@ MonoBehaviour:
     maxSimultaneous: 3
   - groupID: BusSekolah
     clips:
-    - {fileID: 8300000, guid: 75293b748437629c2bfcd26c2181e02b, type: 3}
+    - {fileID: 8300000, guid: ddce60d5d455b50d8a5c78a8dd019524, type: 3}
     volume: 1
     maxSimultaneous: 3
   - groupID: SuaraBersih
     clips:
-    - {fileID: 8300000, guid: f066aed8808bc1d6798527316ceac532, type: 3}
+    - {fileID: 8300000, guid: 734d690bfd99a03cbbf328e3fcd68f53, type: 3}
     volume: 1
     maxSimultaneous: 3
   poolSize: 8

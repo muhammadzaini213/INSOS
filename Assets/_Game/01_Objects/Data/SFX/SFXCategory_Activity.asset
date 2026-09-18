@@ -21,12 +21,12 @@ MonoBehaviour:
     maxSimultaneous: 1
   - groupID: KumurKumur
     clips:
-    - {fileID: 8300000, guid: eb93c2abedc0ed06a81276094adba6a0, type: 3}
+    - {fileID: 8300000, guid: ef335fc77e4d72cbcb35e5a576404137, type: 3}
     volume: 1
     maxSimultaneous: 3
   - groupID: Mandi
     clips:
-    - {fileID: 8300000, guid: a3b51c2ee811a656bafbc2b4f12841af, type: 3}
+    - {fileID: 8300000, guid: 0c96964a040e57ecbb9355765a5c4bd3, type: 3}
     volume: 1
     maxSimultaneous: 3
   - groupID: Menyapu
@@ -41,7 +41,7 @@ MonoBehaviour:
     maxSimultaneous: 3
   - groupID: Kemoceng
     clips:
-    - {fileID: 8300000, guid: 7d938b70f2279b117a05ac2ab71cc9c7, type: 3}
+    - {fileID: 8300000, guid: 9ab17efad721188c09f87eadf67485be, type: 3}
     volume: 1
     maxSimultaneous: 3
   - groupID: LapKaca
@@ -56,7 +56,7 @@ MonoBehaviour:
     maxSimultaneous: 3
   - groupID: MenyusunSelimut
     clips:
-    - {fileID: 8300000, guid: 1eb085d73b70afc30a0f6de538981d30, type: 3}
+    - {fileID: 8300000, guid: c6a4710d29994933ab8954d94a251cbb, type: 3}
     volume: 1
     maxSimultaneous: 3
   - groupID: MenyusunBarang
@@ -76,7 +76,7 @@ MonoBehaviour:
     maxSimultaneous: 3
   - groupID: KumurKumur
     clips:
-    - {fileID: 8300000, guid: eb93c2abedc0ed06a81276094adba6a0, type: 3}
+    - {fileID: 8300000, guid: ef335fc77e4d72cbcb35e5a576404137, type: 3}
     volume: 1
     maxSimultaneous: 3
   poolSize: 8

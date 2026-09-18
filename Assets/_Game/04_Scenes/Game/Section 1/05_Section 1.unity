@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 8894300}
   - component: {fileID: 8894303}
   - component: {fileID: 8894302}
+  - component: {fileID: 8894304}
   m_Layer: 5
   m_Name: ToothPaste
   m_TagString: Untagged
@@ -505,6 +506,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8894304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8894292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: UI
+  effectName: Click
 --- !u!1 &29203945
 GameObject:
   m_ObjectHideFlags: 0
@@ -2996,6 +3011,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1044231354}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1044231349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3441,6 +3468,7 @@ GameObject:
   - component: {fileID: 1248235311}
   - component: {fileID: 1248235310}
   - component: {fileID: 1248235312}
+  - component: {fileID: 1248235313}
   m_Layer: 5
   m_Name: Clean
   m_TagString: Untagged
@@ -3526,6 +3554,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1248235309}
         m_TargetAssemblyTypeName: Slafurry.Utils.UI.UISlide, Assembly-CSharp
         m_MethodName: SlideOut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1248235313}
+        m_TargetAssemblyTypeName: SFXTrigger, Assembly-CSharp
+        m_MethodName: PlaySfx
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3678,6 +3718,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   category: UI
   effectName: Click
+--- !u!114 &1248235313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248235304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34961967389dc24a23eaa383c3bf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playLimit: 0
+  unlimited: 1
+  category: Activity
+  key: Mandi
 --- !u!1 &1258916271
 GameObject:
   m_ObjectHideFlags: 0
@@ -4414,6 +4470,7 @@ GameObject:
   - component: {fileID: 1486643931}
   - component: {fileID: 1486643939}
   - component: {fileID: 1486643940}
+  - component: {fileID: 1486643941}
   m_Layer: 5
   m_Name: ToothPasteOpened
   m_TagString: Untagged
@@ -4827,6 +4884,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &1486643941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486643927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: UI
+  effectName: Click
 --- !u!1 &1537399852
 GameObject:
   m_ObjectHideFlags: 0
