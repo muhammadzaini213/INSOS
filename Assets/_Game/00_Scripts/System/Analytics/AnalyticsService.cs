@@ -60,12 +60,14 @@ public class AnalyticsService : GameSystem<AnalyticsService>
     private IEnumerator LoadConfig()
     {
         string path = Path.Combine(Application.streamingAssetsPath, StreamingAssetsConfig);
+        Debug.Log($"[Analytics] Loading config from: {path}");
 
         using var request = UnityWebRequest.Get(path);
         yield return request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.Success)
         {
+            Debug.Log($"[Analytics] Config loaded: {request.downloadHandler.text}");
             try
             {
                 var data = JsonUtility.FromJson<StreamingConfig>(request.downloadHandler.text);
@@ -79,6 +81,10 @@ public class AnalyticsService : GameSystem<AnalyticsService>
             {
                 Debug.LogWarning($"[Analytics] Failed to parse config: {e.Message}");
             }
+        }
+        else
+        {
+            Debug.LogWarning($"[Analytics] Failed to load config: {request.error}");
         }
 
         if (string.IsNullOrEmpty(_supabaseUrl))
