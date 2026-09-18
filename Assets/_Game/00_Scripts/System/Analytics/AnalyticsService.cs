@@ -26,6 +26,7 @@ public class AnalyticsService : GameSystem<AnalyticsService>
 
     private const string TableName = "analytics_events";
     private const string StreamingAssetsConfig = "analytics_config.json";
+    private const string DeviceIdKey = "AnalyticsDeviceId";
 
     public override int Priority => 999;
 
@@ -142,7 +143,7 @@ public class AnalyticsService : GameSystem<AnalyticsService>
                 ParentName = "",
                 SceneName = scene.name,
                 PlayerName = PlayerData.PlayerName,
-                DeviceId = SystemInfo.deviceUniqueIdentifier,
+                DeviceId = GetDeviceId(),
                 DurationMs = duration,
             }
         );
@@ -232,7 +233,7 @@ public class AnalyticsService : GameSystem<AnalyticsService>
                 ParentName = parentName,
                 SceneName = sceneName,
                 PlayerName = PlayerData.PlayerName,
-                DeviceId = SystemInfo.deviceUniqueIdentifier,
+                DeviceId = GetDeviceId(),
             }
         );
     }
@@ -298,6 +299,22 @@ public class AnalyticsService : GameSystem<AnalyticsService>
         }
 
         _isSending = false;
+    }
+
+    private static string GetDeviceId()
+    {
+        string id = SystemInfo.deviceUniqueIdentifier;
+        if (!string.IsNullOrEmpty(id) && id != "N/A")
+            return id;
+
+        id = PlayerPrefs.GetString(DeviceIdKey, "");
+        if (string.IsNullOrEmpty(id))
+        {
+            id = Guid.NewGuid().ToString();
+            PlayerPrefs.SetString(DeviceIdKey, id);
+            PlayerPrefs.Save();
+        }
+        return id;
     }
 
     private string BuildJsonArray(List<AnalyticsEvent> batch)
