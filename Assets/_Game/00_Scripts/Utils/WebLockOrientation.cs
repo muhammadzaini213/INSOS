@@ -14,7 +14,7 @@ namespace Slafurry.Utils
             if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
             {
                 _locked = true;
-                Screen.fullScreen = true;
+                WebGLPlatform.RequestFullscreen();
                 Screen.orientation = ScreenOrientation.LandscapeLeft;
             }
         }
