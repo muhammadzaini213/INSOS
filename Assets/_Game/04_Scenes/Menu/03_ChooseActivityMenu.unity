@@ -381,19 +381,7 @@ MonoBehaviour:
   useUnscaledTime: 1
   onPunchComplete:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 297280258}
-        m_TargetAssemblyTypeName: CheckpointTrigger, Assembly-CSharp
-        m_MethodName: LoadSection3
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &297280258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1042,7 +1030,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.20028687, y: -2.7682953}
+  m_AnchoredPosition: {x: -0.20031738, y: -2.7683105}
   m_SizeDelta: {x: -17.8401, y: -65.813}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &759981223
