@@ -481,7 +481,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playLimit: 0
   unlimited: 1
-  sfxSource: {fileID: 0}
   category: UI
   key: Click
 --- !u!1001 &266783182
@@ -547,7 +546,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2202081733908700516, guid: 86480168d5275bb52abbf5fda5eee6fc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -809,6 +809,7 @@ MonoBehaviour:
   gameSceneName: GameScene
   aboutMenuSceneName: AboutMenu
   settingsMenuSceneName: SettingsMenu
+  activityMenuSceneName: 03_ChooseActivityMenu
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
